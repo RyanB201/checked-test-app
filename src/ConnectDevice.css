@@ -1,0 +1,215 @@
+.connect-device-page {
+  min-height: 100vh;
+  background-color: var(--color-foundations-white);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-spacing-form-horizontal-spacing);
+  font-family: var(--Font-Secondary); /* Montserrat as default body font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.connect-device-container {
+  width: 100%;
+  max-width: var(--size-frame-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-600);
+  padding-top: var(--spacing-spacing-400);
+}
+
+/* Progress Section */
+.progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-200);
+  margin-bottom: var(--spacing-spacing-200);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.progress-text {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-body);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.progress-bar {
+  width: 100%;
+  height: var(--number-scale-100);
+  background-color: var(--Primary-100);
+  border-radius: var(--Border-Radius-round);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--surface-primary-default);
+  transition: width 300ms ease;
+  border-radius: var(--Border-Radius-round);
+}
+
+/* Navigation Bar */
+.connect-device-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-bottom: var(--spacing-spacing-400);
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-spacing-100);
+  background: none;
+  border: none;
+  color: var(--text-primary-default);
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  cursor: pointer;
+  padding: var(--spacing-spacing-200);
+  transition: color 200ms ease;
+}
+
+.nav-button:hover {
+  color: var(--text-primary-default-hover);
+}
+
+.nav-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Main Content */
+.connect-device-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-spacing-600);
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+  padding: var(--spacing-spacing-400) 0;
+}
+
+/* Title */
+.connect-device-title {
+  font-size: var(--Font-Headings-H3-text-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-default-heading);
+  line-height: var(--size-font-headings-h3-line-height);
+  margin: 0;
+  text-align: center;
+  font-family: var(--Font-Primary); /* Sora for headings */
+}
+
+/* Device Connection Card */
+.device-connection-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-spacing-500);
+  padding: var(--spacing-spacing-600) var(--spacing-spacing-400);
+  background-color: var(--color-foundations-white);
+  border: var(--Border-Width-md) solid var(--border-default);
+  border-radius: var(--Border-Radius-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.device-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--Border-Radius-round);
+}
+
+.device-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.device-connection-text {
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-body);
+  line-height: var(--size-font-copy-body-line-height);
+  text-align: center;
+  margin: 0;
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+/* Footer Actions */
+.connect-device-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-spacing-400);
+  width: 100%;
+  margin-top: auto;
+  padding-bottom: var(--spacing-spacing-400);
+}
+
+.btn-connect-device {
+  width: 100%;
+}
+
+.help-text {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  color: var(--text-default-body);
+  text-align: center;
+  margin: 0;
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.help-link {
+  color: var(--text-primary-default);
+  text-decoration: underline;
+  font-weight: var(--font-weight-medium);
+  transition: color 200ms ease;
+  cursor: pointer;
+}
+
+.help-link:hover {
+  color: var(--text-primary-default-hover);
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+  .connect-device-container {
+    gap: var(--spacing-spacing-500);
+    padding-top: var(--spacing-spacing-300);
+  }
+  
+  .connect-device-title {
+    font-size: var(--Font-Headings-H4-text-size);
+    line-height: var(--size-font-headings-h4-line-height);
+  }
+  
+  .device-connection-card {
+    padding: var(--spacing-spacing-500) var(--spacing-spacing-300);
+  }
+  
+  .device-icon-wrapper {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .device-lightning-icon {
+    width: 40px;
+    height: 40px;
+  }
+}

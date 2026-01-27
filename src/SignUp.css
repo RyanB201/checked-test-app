@@ -1,0 +1,216 @@
+.signup-page {
+  min-height: 100vh;
+  background-color: var(--color-foundations-white);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-spacing-form-horizontal-spacing);
+  font-family: var(--Font-Secondary); /* Montserrat as default body font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.signup-container {
+  width: 100%;
+  max-width: var(--size-frame-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-600);
+  padding-top: var(--spacing-spacing-400);
+}
+
+/* Progress Section */
+.progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-200);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-text {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-body);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.progress-bar {
+  width: 100%;
+  height: var(--number-scale-100);
+  background-color: var(--surface-disabled-disabled);
+  border-radius: var(--Border-Radius-round);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--surface-primary-default);
+  transition: width 300ms ease;
+  border-radius: var(--Border-Radius-round);
+}
+
+/* Navigation Bar */
+.signup-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-spacing-100);
+  background: none;
+  border: none;
+  color: var(--text-primary-default);
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  cursor: pointer;
+  padding: var(--spacing-spacing-200);
+  transition: color 200ms ease;
+}
+
+.nav-button:hover {
+  color: var(--text-primary-default-hover);
+}
+
+.nav-button-close {
+  padding: var(--spacing-spacing-200);
+}
+
+.nav-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Title */
+.signup-title {
+  font-size: var(--Font-Headings-H3-text-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-default-heading);
+  line-height: var(--size-font-headings-h3-line-height);
+  margin: 0;
+  text-align: center;
+  font-family: var(--Font-Primary); /* Sora for headings */
+}
+
+/* Form */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-500);
+  width: 100%;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-200);
+  width: 100%;
+}
+
+.form-label {
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-default-body);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--spacing-spacing-400);
+  border: var(--Border-Width-md) solid var(--border-default);
+  border-radius: var(--Border-Radius-200);
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-body);
+  background-color: var(--color-foundations-white);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  transition: all 200ms ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: var(--text-default-placeholder);
+}
+
+.form-input:focus {
+  border-color: var(--border-primary-focus);
+  background-color: var(--color-foundations-white);
+}
+
+.form-input-error {
+  border-color: var(--border-error-default);
+}
+
+.form-input-error:focus {
+  border-color: var(--border-error-focus);
+}
+
+.form-error {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  color: var(--text-error-default);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  margin-top: calc(var(--spacing-spacing-100) * -1);
+}
+
+.btn-continue {
+  margin-top: var(--spacing-spacing-200);
+}
+
+.btn-disabled {
+  background-color: var(--surface-disabled-disabled) !important;
+  color: var(--text-disabled-default) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.btn-disabled:hover {
+  background-color: var(--surface-disabled-disabled) !important;
+  transform: none !important;
+}
+
+/* Legal Text */
+.legal-text {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  color: var(--text-default-body);
+  text-align: center;
+  line-height: var(--size-font-copy-body-sm-line-height);
+  margin: 0;
+  padding: 0 var(--spacing-spacing-400);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.legal-link {
+  color: var(--text-primary-default);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: color 200ms ease;
+}
+
+.legal-link:hover {
+  color: var(--text-primary-default-hover);
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+  .signup-container {
+    gap: var(--spacing-spacing-500);
+    padding-top: var(--spacing-spacing-300);
+  }
+  
+  .signup-title {
+    font-size: var(--Font-Headings-H4-text-size);
+    line-height: var(--size-font-headings-h4-line-height);
+  }
+}

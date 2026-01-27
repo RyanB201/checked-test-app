@@ -1,0 +1,227 @@
+.connecting-device-page {
+  min-height: 100vh;
+  background-color: var(--color-foundations-white);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-spacing-form-horizontal-spacing);
+  font-family: var(--Font-Secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.connecting-device-container {
+  width: 100%;
+  max-width: var(--size-frame-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-600);
+  padding-top: var(--spacing-spacing-400);
+  min-height: 100vh;
+}
+
+/* Progress Section */
+.connecting-progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-200);
+  margin-bottom: var(--spacing-spacing-200);
+}
+
+.connecting-progress-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.connecting-progress-text {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-body);
+  font-family: var(--Font-Secondary);
+}
+
+.connecting-progress-bar {
+  width: 100%;
+  height: var(--number-scale-100);
+  background-color: var(--Primary-100);
+  border-radius: var(--Border-Radius-round);
+  overflow: hidden;
+}
+
+.connecting-progress-bar-fill {
+  height: 100%;
+  background-color: var(--surface-primary-default);
+  transition: width 300ms ease;
+  border-radius: var(--Border-Radius-round);
+}
+
+/* Main Content */
+.connecting-device-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-spacing-600);
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+  padding: var(--spacing-spacing-400) 0;
+}
+
+/* Title */
+.connecting-device-title {
+  font-size: var(--Font-Headings-H6-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-heading);
+  line-height: var(--size-font-headings-h6-line-height);
+  margin: 0;
+  text-align: center;
+  font-family: var(--Font-Primary);
+}
+
+/* Connection Card */
+.connecting-card {
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-spacing-500);
+  padding: var(--spacing-spacing-600) var(--spacing-spacing-400);
+  background-color: var(--color-foundations-white);
+  border: var(--Border-Width-xs) solid var(--border-default);
+  border-radius: var(--Border-Radius-200);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Breathing Animation Container */
+.breathing-animation-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Concentric rings with breathing animation */
+.breathing-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--Primary-200);
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.breathing-ring-1 {
+  width: 80px;
+  height: 80px;
+  background-color: var(--Primary-50);
+  opacity: 0.3;
+  animation-delay: 0s;
+}
+
+.breathing-ring-2 {
+  width: 64px;
+  height: 64px;
+  background-color: var(--Primary-100);
+  opacity: 0.5;
+  animation-delay: 0.2s;
+}
+
+.breathing-ring-3 {
+  width: 48px;
+  height: 48px;
+  background-color: var(--Primary-200);
+  opacity: 0.7;
+  animation-delay: 0.4s;
+}
+
+/* Zap Icon Container */
+.zap-icon-container {
+  position: relative;
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  background: linear-gradient(135deg, var(--Primary-100) 0%, var(--Primary-50) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(28, 119, 130, 0.15);
+}
+
+.zap-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Breathing Animation Keyframes */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Status Text */
+.connecting-status-text {
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-default-body);
+  line-height: var(--size-font-copy-body-line-height);
+  text-align: center;
+  margin: 0;
+  font-family: var(--Font-Secondary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+  .connecting-device-container {
+    gap: var(--spacing-spacing-500);
+    padding-top: var(--spacing-spacing-300);
+  }
+
+  .connecting-device-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .connecting-card {
+    padding: var(--spacing-spacing-500) var(--spacing-spacing-300);
+  }
+
+  .breathing-animation-container {
+    width: 64px;
+    height: 64px;
+  }
+
+  .breathing-ring-1 {
+    width: 64px;
+    height: 64px;
+  }
+
+  .breathing-ring-2 {
+    width: 52px;
+    height: 52px;
+  }
+
+  .breathing-ring-3 {
+    width: 40px;
+    height: 40px;
+  }
+
+  .zap-icon-container {
+    width: 36px;
+    height: 36px;
+  }
+
+  .zap-icon {
+    width: 22px;
+    height: 22px;
+  }
+}

@@ -1,0 +1,251 @@
+.vital-results-page {
+    min-height: 100vh;
+    background-color: var(--color-foundations-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-spacing-form-horizontal-spacing);
+    font-family: var(--Font-Secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.vital-results-container {
+    width: 100%;
+    max-width: var(--size-frame-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-400);
+    padding-top: var(--spacing-spacing-400);
+    min-height: calc(100vh - var(--spacing-spacing-form-horizontal-spacing) * 2);
+}
+
+/* Progress Section */
+.vital-results-progress-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.vital-results-progress-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.vital-results-progress-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+}
+
+.vital-results-progress-bar {
+    width: 100%;
+    height: var(--number-scale-100);
+    background-color: var(--Primary-100);
+    border-radius: var(--Border-Radius-round);
+    overflow: hidden;
+}
+
+.vital-results-progress-bar-fill {
+    height: 100%;
+    background-color: var(--surface-primary-default);
+    transition: width 300ms ease;
+    border-radius: var(--Border-Radius-round);
+}
+
+/* Navigation Bar */
+.vital-results-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.vital-results-back-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-100);
+    background: none;
+    border: none;
+    color: var(--text-primary-default);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    padding: var(--spacing-spacing-200);
+    transition: color 200ms ease;
+}
+
+.vital-results-back-button:hover {
+    color: var(--text-primary-default-hover);
+}
+
+.vital-results-back-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Main Content */
+.vital-results-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-500);
+    width: 100%;
+    padding: var(--spacing-spacing-400) 0;
+    flex: 1;
+}
+
+/* Title */
+.vital-results-title {
+    font-size: var(--Font-Headings-H6-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-heading);
+    line-height: var(--size-font-headings-h6-line-height);
+    margin: 0;
+    text-align: center;
+    font-family: var(--Font-Primary);
+}
+
+/* Blood Pressure Reading */
+.blood-pressure-reading {
+    font-size: var(--Font-Headings-H6-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    text-align: center;
+    margin: 0;
+    font-family: var(--Font-Secondary);
+}
+
+/* Status Section */
+.status-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-200);
+}
+
+.status-icon-container {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--Success-50, #dcfce7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--Success-600, #16a34a);
+}
+
+.status-label {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    margin: 0;
+    font-family: var(--Font-Secondary);
+}
+
+.status-description {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    text-align: center;
+    margin: 0;
+    line-height: var(--size-font-copy-body-sm-line-height);
+    font-family: var(--Font-Secondary);
+    max-width: 280px;
+}
+
+/* Data Fields */
+.vital-data-fields-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+}
+
+.vital-data-field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-spacing-300) var(--spacing-spacing-400);
+    background-color: var(--surface-default);
+    border-radius: var(--Border-Radius-100);
+}
+
+.vital-data-field-label {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+.vital-data-field-value {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+.vital-data-field-value.status-normal {
+    color: var(--Success-600, #16a34a);
+}
+
+/* Continue Button */
+.vital-results-actions {
+    width: 100%;
+    margin-top: auto;
+    padding-top: var(--spacing-spacing-400);
+}
+
+.continue-questionnaire-button {
+    width: 100%;
+    padding: var(--spacing-spacing-400);
+    background-color: var(--surface-primary-default);
+    color: var(--color-foundations-white);
+    border: none;
+    border-radius: var(--Border-Radius-200);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+.continue-questionnaire-button:hover {
+    background-color: var(--surface-primary-default-hover);
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+    .vital-results-container {
+        gap: var(--spacing-spacing-300);
+        padding-top: var(--spacing-spacing-300);
+    }
+
+    .vital-results-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .status-icon-container {
+        width: 48px;
+        height: 48px;
+    }
+
+    .status-icon {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: var(--color-foundations-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-spacing-form-horizontal-spacing);
+  font-family: var(--Font-Secondary); /* Montserrat as default body font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--size-frame-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-spacing-xs);
+}
+
+/* Logo Section */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-spacing-400);
+}
+
+.logo {
+  margin-bottom: var(--spacing-spacing-200);
+}
+
+.logo-image {
+  width: var(--number-scale-1000);
+  height: var(--number-scale-1000);
+  display: block;
+  object-fit: contain;
+}
+
+.app-name {
+  font-size: var(--Font-Headings-H4-text-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary-default);
+  line-height: var(--size-font-headings-h4-line-height);
+  margin: 0;
+  font-family: var(--Font-Primary); /* Sora for headings */
+}
+
+.tagline {
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-body);
+  line-height: var(--size-font-copy-body-line-height);
+  margin: 0;
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.description {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-default-placeholder);
+  line-height: var(--size-font-copy-body-sm-line-height);
+  margin: 0;
+  max-width: 280px;
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: var(--spacing-spacing-200);
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-dot {
+  width: var(--spacing-spacing-800);
+  height: var(--number-scale-100);
+  border-radius: var(--Border-Radius-100);
+  background-color: var(--surface-disabled-disabled);
+  transition: background-color 300ms ease;
+}
+
+.pagination-dot.active {
+  background-color: var(--surface-primary-default);
+}
+
+/* Actions */
+.actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-spacing-300);
+  align-items: stretch;
+}
+
+.btn {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--spacing-spacing-300) var(--spacing-spacing-600);
+  border-radius: var(--number-scale-700);
+  font-size: var(--Font-Copy-body-text-size);
+  font-weight: var(--font-weight-medium);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-spacing-200);
+  transition: all 200ms ease;
+  font-family: var(--Font-Secondary); /* Montserrat for buttons */
+}
+
+.btn-primary {
+  background-color: var(--surface-primary-default);
+  color: var(--text-primary-on-colour);
+}
+
+.btn-primary:hover {
+  background-color: var(--surface-primary-default-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background-color: var(--color-foundations-white);
+  color: var(--text-default-body);
+  border: var(--Border-Width-md) solid var(--border-default);
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface-default);
+  border-color: var(--border-disabled-disabled);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* Login Link */
+.login-link {
+  text-align: center;
+  font-size: var(--size-font-copy-body-sm-text-size);
+  color: var(--text-default-body);
+  margin-top: var(--spacing-spacing-200);
+  font-family: var(--Font-Secondary); /* Montserrat for body text */
+}
+
+.login-link .link {
+  color: var(--text-primary-default);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color 200ms ease;
+}
+
+.login-link .link:hover {
+  color: var(--text-primary-default-hover);
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+  .container {
+    gap: var(--spacing-spacing-800);
+  }
+}

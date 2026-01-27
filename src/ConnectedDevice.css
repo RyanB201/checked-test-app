@@ -1,0 +1,150 @@
+.connected-device-page {
+    min-height: 100vh;
+    background-color: var(--color-foundations-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-spacing-form-horizontal-spacing);
+    font-family: var(--Font-Secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.connected-device-container {
+    width: 100%;
+    max-width: var(--size-frame-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-600);
+    padding-top: var(--spacing-spacing-400);
+    min-height: 100vh;
+}
+
+/* Progress Section */
+.connected-progress-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.connected-progress-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.connected-progress-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+}
+
+.connected-progress-bar {
+    width: 100%;
+    height: var(--number-scale-100);
+    background-color: var(--Primary-100);
+    border-radius: var(--Border-Radius-round);
+    overflow: hidden;
+}
+
+.connected-progress-bar-fill {
+    height: 100%;
+    background-color: var(--surface-primary-default);
+    transition: width 300ms ease;
+    border-radius: var(--Border-Radius-round);
+}
+
+/* Main Content */
+.connected-device-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-600);
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+    padding: var(--spacing-spacing-400) 0;
+}
+
+/* Title */
+.connected-device-title {
+    font-size: var(--Font-Headings-H6-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    line-height: var(--size-font-headings-h6-line-height);
+    margin: 0;
+    text-align: center;
+    font-family: var(--Font-Primary);
+}
+
+/* Connection Card */
+.connected-card {
+    width: 100%;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-500);
+    padding: var(--spacing-spacing-600) var(--spacing-spacing-400);
+    background-color: var(--color-foundations-white);
+    border: var(--Border-Width-xs) solid var(--border-default);
+    border-radius: var(--Border-Radius-200);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Success Icon Container */
+.success-icon-container {
+    width: 56px;
+    height: 56px;
+    background-color: var(--Success-100);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-circle-icon {
+    width: 28px;
+    height: 28px;
+}
+
+/* Status Text */
+.connected-status-text {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-body);
+    line-height: var(--size-font-copy-body-line-height);
+    text-align: center;
+    margin: 0;
+    font-family: var(--Font-Secondary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+    .connected-device-container {
+        gap: var(--spacing-spacing-500);
+        padding-top: var(--spacing-spacing-300);
+    }
+
+    .connected-device-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .connected-card {
+        padding: var(--spacing-spacing-500) var(--spacing-spacing-300);
+    }
+
+    .success-icon-container {
+        width: 48px;
+        height: 48px;
+    }
+
+    .check-circle-icon {
+        width: 24px;
+        height: 24px;
+    }
+}

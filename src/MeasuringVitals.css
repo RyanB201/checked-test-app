@@ -1,0 +1,263 @@
+.measuring-vitals-page {
+    min-height: 100vh;
+    background-color: var(--color-foundations-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-spacing-form-horizontal-spacing);
+    font-family: var(--Font-Secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.measuring-vitals-container {
+    width: 100%;
+    max-width: var(--size-frame-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-400);
+    padding-top: var(--spacing-spacing-400);
+}
+
+/* Progress Section */
+.measuring-progress-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.measuring-progress-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.measuring-progress-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+}
+
+.measuring-progress-bar {
+    width: 100%;
+    height: var(--number-scale-100);
+    background-color: var(--Primary-100);
+    border-radius: var(--Border-Radius-round);
+    overflow: hidden;
+}
+
+.measuring-progress-bar-fill {
+    height: 100%;
+    background-color: var(--surface-primary-default);
+    transition: width 300ms ease;
+    border-radius: var(--Border-Radius-round);
+}
+
+/* Navigation Bar */
+.measuring-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.measuring-back-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-100);
+    background: none;
+    border: none;
+    color: var(--text-primary-default);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    padding: var(--spacing-spacing-200);
+    transition: color 200ms ease;
+}
+
+.measuring-back-button:hover {
+    color: var(--text-primary-default-hover);
+}
+
+.measuring-back-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Main Content */
+.measuring-vitals-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-500);
+    width: 100%;
+    padding: var(--spacing-spacing-400) 0;
+}
+
+/* Title */
+.measuring-vitals-title {
+    font-size: var(--Font-Headings-H6-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-heading);
+    line-height: var(--size-font-headings-h6-line-height);
+    margin: 0;
+    text-align: center;
+    font-family: var(--Font-Primary);
+}
+
+/* Measurement Card */
+.measurement-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-500);
+    padding: var(--spacing-spacing-600) var(--spacing-spacing-400);
+    background-color: var(--color-foundations-white);
+    border: var(--Border-Width-xs) solid var(--border-default);
+    border-radius: var(--Border-Radius-200);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Circular Progress */
+.circular-progress-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.circular-progress-svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.circular-progress-bg {
+    fill: none;
+    stroke: var(--Primary-50);
+    stroke-width: 8;
+}
+
+.circular-progress-fg {
+    fill: none;
+    stroke: var(--Primary-600);
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.circular-progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--size-font-copy-body-lg-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    font-family: var(--Font-Secondary);
+}
+
+/* Status Text */
+.measuring-status-text {
+    font-size: var(--size-font-copy-body-lg-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--size-font-copy-body-lg-line-height);
+    text-align: center;
+    margin: 0;
+    font-family: var(--Font-Secondary);
+}
+
+/* Data Fields */
+.data-fields-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+}
+
+.data-field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-spacing-300) var(--spacing-spacing-400);
+    background-color: var(--surface-default);
+    border-radius: var(--Border-Radius-100);
+}
+
+.data-field-label {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+.data-field-value {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+/* Completed State Styles */
+.status-complete {
+    color: var(--Primary-600);
+    font-weight: var(--font-weight-semibold);
+}
+
+.value-complete {
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Continue Button */
+.measuring-continue-button {
+    width: 100%;
+    padding: var(--spacing-spacing-400);
+    background-color: var(--surface-primary-default);
+    color: var(--color-foundations-white);
+    border: none;
+    border-radius: var(--Border-Radius-200);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    transition: background-color 200ms ease;
+    margin-top: var(--spacing-spacing-400);
+}
+
+.measuring-continue-button:hover {
+    background-color: var(--surface-primary-default-hover);
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+    .measuring-vitals-container {
+        gap: var(--spacing-spacing-300);
+        padding-top: var(--spacing-spacing-300);
+    }
+
+    .measuring-vitals-title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .measurement-card {
+        padding: var(--spacing-spacing-500) var(--spacing-spacing-300);
+    }
+
+    .circular-progress-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .circular-progress-text {
+        font-size: var(--Font-Copy-body-text-size);
+    }
+}

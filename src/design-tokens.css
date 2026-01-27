@@ -1,0 +1,350 @@
+/* Checked Design System Tokens - Based on Figma Export */
+
+:root {
+  /* ============================================
+     FOUNDATION COLORS
+     ============================================ */
+  --color-foundations-white: #ffffff;
+  --color-foundations-black: #201f19;
+
+  /* ============================================
+     PRIMARY COLORS (Teal)
+     ============================================ */
+  --Primary-50: #d3f7fe;
+  --Primary-100: #87effd;
+  --Primary-200: #37d5e7;
+  --Primary-300: #30bbcb;
+  --Primary-400: #29a2b0;
+  --Primary-500: #238b97;
+  --Primary-600: #1c7782;
+  --Primary-700: #125c65;
+  --Primary-800: #0a4046;
+  --Primary-900: #032327;
+  --Primary-950: #011315;
+
+  /* ============================================
+     NEUTRAL COLORS (Slate)
+     ============================================ */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+  --color-neutral-950: #020617;
+
+  /* ============================================
+     ERROR COLORS (Red)
+     ============================================ */
+  --Error-100: #fee2e2;
+  --Error-200: #fecaca;
+  --Error-300: #fca5a5;
+  --Error-400: #f87171;
+  --Error-500: #ef4444;
+  --Error-600: #dc2626;
+  --Error-700: #b91c1c;
+  --Error-800: #991b1b;
+  --Error-900: #7f1d1d;
+  --Error-950: #450a0a;
+
+  /* ============================================
+     INFORMATION COLORS (Blue)
+     ============================================ */
+  --Information-100: #dbeafe;
+  --Information-200: #bfdbfe;
+  --Information-300: #93c5fd;
+  --Information-400: #60a5fa;
+  --Information-500: #3b82f6;
+  --Information-600: #2563eb;
+  --Information-700: #1d4ed8;
+  --Information-800: #1e40af;
+  --Information-900: #1e3a8a;
+  --Information-950: #172554;
+
+  /* ============================================
+     WARNING COLORS (Yellow)
+     ============================================ */
+  --Warning-100: #fef9c3;
+  --Warning-200: #fef08a;
+  --Warning-300: #fde047;
+  --Warning-400: #facc15;
+  --Warning-500: #eab308;
+  --Warning-600: #ca8a04;
+  --Warning-700: #a16207;
+  --Warning-800: #854d0e;
+  --Warning-900: #713f12;
+  --Warning-950: #422006;
+
+  /* ============================================
+     SUCCESS COLORS (Green)
+     ============================================ */
+  --Success-100: #dcfce7;
+  --Success-200: #bbf7d0;
+  --Success-300: #86efac;
+  --Success-400: #4ade80;
+  --Success-500: #22c55e;
+  --Success-600: #16a34a;
+  --Success-700: #15803d;
+  --Success-800: #166534;
+  --Success-900: #14532d;
+  --Success-950: #052e16;
+
+  /* ============================================
+     SECONDARY COLORS
+     ============================================ */
+  --color-secondary-grey: #bfd6c0;
+  --color-secondary-violet: #b79ced;
+
+  /* ============================================
+     FONT FAMILIES
+     ============================================ */
+  --Font-Primary: "Sora", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --Font-Secondary: "Montserrat", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ============================================
+     TYPOGRAPHY - MOBILE
+     ============================================ */
+  /* Headings */
+  --Font-Headings-H1-text-size: 48px;
+  --size-font-headings-h1-line-height: 56px;
+  --spacing-font-headings-h1-paragraph-spacing: 56px;
+
+  --Font-Headings-H2-text-size: 40px;
+  --size-font-headings-h2-line-height: 48px;
+  --spacing-font-headings-h2-paragraph-spacing: 48px;
+
+  --Font-Headings-H3-text-size: 32px;
+  --size-font-headings-h3-line-height: 40px;
+  --spacing-font-headings-h3-paragraph-spacing: 40px;
+
+  --Font-Headings-H4-text-size: 28px;
+  --size-font-headings-h4-line-height: 32px;
+  --spacing-font-headings-h4-paragraph-spacing: 32px;
+
+  --Font-Headings-H5-text-size: 24px;
+  --size-font-headings-h5-line-height: 28px;
+  --spacing-font-headings-h5-paragraph-spacing: 28px;
+
+  --Font-Headings-H6-text-size: 20px;
+  --size-font-headings-h6-line-height: 24px;
+  --spacing-font-headings-h6-paragraph-spacing: 24px;
+
+  /* Body Text */
+  --Font-Copy-body-text-size: 16px;
+  --size-font-copy-body-line-height: 20px;
+  --spacing-font-copy-body-paragraph-spacing: 20px;
+
+  --size-font-copy-body-lg-text-size: 20px;
+  --size-font-copy-body-lg-line-height: 24px;
+  --spacing-font-copy-body-lg-paragraph-spacing: 24px;
+
+  --size-font-copy-body-sm-text-size: 14px;
+  --size-font-copy-body-sm-line-height: 16px;
+  --spacing-font-copy-body-sm-paragraph-spacing: 16px;
+
+  /* Caption */
+  --Font-Copy-caption-text-size: 12px;
+  --size-font-copy-caption-line-height: 16px;
+  --spacing-font-copy-caption-paragraph-spacing: 16px;
+
+  /* ============================================
+     SPACING SCALE
+     ============================================ */
+  --spacing-spacing-0: 0px;
+  --spacing-spacing-100: 4px;
+  --spacing-spacing-200: 8px;
+  --spacing-spacing-300: 12px;
+  --spacing-spacing-400: 16px;
+  --spacing-spacing-500: 20px;
+  --spacing-spacing-600: 24px;
+  --spacing-spacing-700: 28px;
+  --spacing-spacing-800: 32px;
+  --spacing-spacing-xs: 40px;
+  --spacing-spacing-sm: 48px;
+  --spacing-spacing-md: 56px;
+  --spacing-spacing-lg: 64px;
+  --spacing-spacing-xl: 96px;
+  --spacing-spacing-2xl: 128px;
+  --spacing-spacing-3xl: 256px;
+
+  /* Number Scale (for borders, radius, etc.) */
+  --number-scale-0: 0;
+  --number-scale-25: 1px;
+  --number-scale-50: 2px;
+  --number-scale-100: 4px;
+  --number-scale-200: 8px;
+  --number-scale-300: 12px;
+  --number-scale-400: 16px;
+  --number-scale-500: 20px;
+  --number-scale-600: 24px;
+  --number-scale-700: 28px;
+  --number-scale-800: 32px;
+  --number-scale-900: 36px;
+  --number-scale-1000: 40px;
+  --number-scale-1100: 48px;
+  --number-scale-1200: 56px;
+  --number-scale-1300: 64px;
+  --number-scale-1400: 72px;
+  --number-scale-1500: 96px;
+  --number-scale-1600: 128px;
+  --number-scale-1700: 256px;
+  --number-scale-1800: 512px;
+  --number-scale-round: 9999px;
+
+  /* ============================================
+     BORDER WIDTH
+     ============================================ */
+  --Border-Width-none: var(--number-scale-0);
+  --Border-Width-xs: var(--number-scale-25);
+  --Border-Width-sm: var(--number-scale-50);
+  --Border-Width-md: var(--number-scale-100);
+  --Border-Width-lg: var(--number-scale-200);
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --Border-Radius-none: var(--number-scale-0);
+  --Border-Radius-50: var(--number-scale-50);
+  --Border-Radius-100: var(--number-scale-100);
+  --Border-Radius-200: var(--number-scale-200);
+  --Border-Radius-300: var(--number-scale-300);
+  --Border-Radius-round: var(--number-scale-round);
+
+  /* ============================================
+     SEMANTIC TOKENS - LIGHT MODE
+     ============================================ */
+  /* Text Colors */
+  --text-default-heading: var(--color-neutral-950);
+  --text-default-body: var(--color-neutral-900);
+  --text-default-caption: var(--color-neutral-800);
+  --text-default-placeholder: var(--color-neutral-600);
+  --text-on-colour-heading: var(--color-foundations-white);
+  --text-on-colour-body: var(--color-foundations-white);
+  --text-on-colour-caption: var(--color-neutral-100);
+  --text-on-colour-placeholder: var(--color-neutral-100);
+  --text-primary-default: var(--Primary-600);
+  --text-primary-default-hover: var(--Primary-700);
+  --text-primary-on-colour: var(--color-foundations-white);
+  --text-primary-on-colour-hover: var(--color-foundations-white);
+  --text-error-default: var(--Error-600);
+  --text-error-default-hover: var(--Error-700);
+  --text-information-default: var(--Information-600);
+  --text-information-default-hover: var(--Information-700);
+  --text-warning-default: var(--Warning-600);
+  --text-warning-default-hover: var(--Warning-700);
+  --text-success-default: var(--Success-600);
+  --text-success-default-hover: var(--Success-700);
+  --text-disabled-default: var(--color-neutral-500);
+  --text-disabled-on-colour: var(--color-neutral-400);
+
+  /* Icon Colors */
+  --icon-primary-default: var(--Primary-600);
+  --icon-primary-default-hover: var(--Primary-700);
+  --icon-primary-on-colour: var(--color-foundations-white);
+  --icon-primary-on-colour-hover: var(--color-foundations-white);
+  --icon-error-default: var(--Error-600);
+  --icon-error-default-hover: var(--Error-700);
+  --icon-information-default: var(--Information-600);
+  --icon-information-default-hover: var(--Information-700);
+  --icon-warning-default: var(--Warning-600);
+  --icon-warning-default-hover: var(--Warning-700);
+  --icon-success-default: var(--Success-600);
+  --icon-success-default-hover: var(--Success-700);
+  --icon-disabled-default: var(--color-neutral-500);
+  --icon-disabled-on-colour: var(--color-neutral-400);
+
+  /* Surface Colors */
+  --surface-page: var(--color-neutral-50);
+  --surface-page-secondary: var(--color-neutral-100);
+  --surface-default: var(--color-neutral-50);
+  --surface-secondary: var(--color-neutral-100);
+  --surface-primary-default: var(--Primary-600);
+  --surface-primary-default-hover: var(--Primary-700);
+  --surface-primary-default-subtle: var(--Primary-50);
+  --surface-primary-default-subtle-hover: var(--Primary-100);
+  --surface-error-default: var(--Error-600);
+  --surface-error-default-hover: var(--Error-700);
+  --surface-information-default: var(--Information-600);
+  --surface-information-default-hover: var(--Information-700);
+  --surface-warning-default: var(--Warning-600);
+  --surface-warning-default-hover: var(--Warning-700);
+  --surface-success-default: var(--Success-600);
+  --surface-success-default-hover: var(--Success-700);
+  --surface-disabled-disabled: var(--color-neutral-200);
+
+  /* Border Colors */
+  --border-default: var(--color-neutral-100);
+  --border-on-colour: var(--color-foundations-white);
+  --border-primary-default: var(--Primary-600);
+  --border-primary-default-hover: var(--Primary-700);
+  --border-primary-default-subtle: var(--Primary-50);
+  --border-primary-default-subtle-hover: var(--Primary-100);
+  --border-primary-focus: var(--Primary-500);
+  --border-error-default: var(--Error-600);
+  --border-error-default-hover: var(--Error-700);
+  --border-error-focus: var(--Error-600);
+  --border-information-default: var(--Information-600);
+  --border-information-default-hover: var(--Information-700);
+  --border-information-focus: var(--Information-600);
+  --border-warning-default: var(--Warning-600);
+  --border-warning-default-hover: var(--Warning-700);
+  --border-warning-focus: var(--Warning-600);
+  --border-success-default: var(--Success-600);
+  --border-success-default-hover: var(--Success-700);
+  --border-success-focus: var(--Success-600);
+  --border-disabled-disabled: var(--color-neutral-200);
+
+  /* ============================================
+     LAYOUT
+     ============================================ */
+  --size-frame-width: 355px; /* Mobile frame width */
+  --spacing-spacing-form-width: 355px;
+  --spacing-spacing-device-size-frame: 393px;
+  --spacing-spacing-form-horizontal-spacing: 18px;
+}
+
+/* Desktop Breakpoint */
+@media (min-width: 768px) {
+  :root {
+    /* Typography - Desktop */
+    --Font-Headings-H1-text-size: 60px;
+    --size-font-headings-h1-line-height: 72px;
+    --spacing-font-headings-h1-paragraph-spacing: 72px;
+
+    --Font-Headings-H2-text-size: 48px;
+    --size-font-headings-h2-line-height: 56px;
+    --spacing-font-headings-h2-paragraph-spacing: 56px;
+
+    --Font-Headings-H3-text-size: 40px;
+    --size-font-headings-h3-line-height: 48px;
+    --spacing-font-headings-h3-paragraph-spacing: 48px;
+
+    --Font-Headings-H4-text-size: 32px;
+    --size-font-headings-h4-line-height: 40px;
+    --spacing-font-headings-h4-paragraph-spacing: 40px;
+
+    --Font-Headings-H5-text-size: 24px;
+    --size-font-headings-h5-line-height: 28px;
+    --spacing-font-headings-h5-paragraph-spacing: 28px;
+
+    --Font-Headings-H6-text-size: 20px;
+    --size-font-headings-h6-line-height: 24px;
+    --spacing-font-headings-h6-paragraph-spacing: 24px;
+
+    /* Layout - Desktop */
+    --size-frame-width: 876px;
+    --spacing-spacing-form-width: 856px;
+    --spacing-spacing-device-size-frame: 1440px;
+    --spacing-spacing-form-horizontal-spacing: 64px;
+  }
+}
