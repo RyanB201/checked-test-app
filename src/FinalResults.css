@@ -1,0 +1,256 @@
+.final-results-page {
+    min-height: 100vh;
+    background-color: var(--color-foundations-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-spacing-form-horizontal-spacing);
+    font-family: var(--Font-Secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.final-results-container {
+    width: 100%;
+    max-width: var(--size-frame-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-400);
+    padding-top: var(--spacing-spacing-400);
+    min-height: calc(100vh - var(--spacing-spacing-form-horizontal-spacing) * 2);
+}
+
+/* Progress Section */
+.final-results-progress-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.final-results-progress-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.final-results-progress-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+}
+
+.final-results-progress-bar {
+    width: 100%;
+    height: var(--number-scale-100);
+    background-color: var(--Primary-100);
+    border-radius: var(--Border-Radius-round);
+    overflow: hidden;
+}
+
+.final-results-progress-bar-fill {
+    height: 100%;
+    background-color: var(--surface-primary-default);
+    transition: width 300ms ease;
+    border-radius: var(--Border-Radius-round);
+}
+
+/* Navigation Bar */
+.final-results-nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--spacing-spacing-200);
+}
+
+.final-results-back-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-100);
+    background: none;
+    border: none;
+    color: var(--text-primary-default);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    padding: var(--spacing-spacing-200);
+    transition: color 200ms ease;
+}
+
+.final-results-back-button:hover {
+    color: var(--text-primary-default-hover);
+}
+
+.final-results-back-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Main Content */
+.final-results-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-400);
+    width: 100%;
+    flex: 1;
+}
+
+/* Header Section */
+.final-results-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-200);
+    text-align: center;
+}
+
+.final-results-title {
+    font-size: var(--Font-Headings-H5-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-heading);
+    line-height: var(--size-font-headings-h5-line-height);
+    margin: 0;
+    font-family: var(--Font-Primary);
+}
+
+/* Blood Pressure Display */
+.blood-pressure-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-100);
+}
+
+.blood-pressure-label {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-heading);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+.blood-pressure-value {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+/* Status Section */
+.status-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-200);
+}
+
+.status-icon-container {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--Success-100, #dcfce7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--Success-600, #16a34a);
+}
+
+.status-label {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-heading);
+    font-family: var(--Font-Secondary);
+    margin: 0;
+}
+
+/* Recommendation Card */
+.recommendation-card {
+    width: 100%;
+    background-color: var(--color-foundations-white);
+    border: var(--Border-Width-xs) solid var(--Gray-200, #e5e7eb);
+    border-radius: var(--Border-Radius-200);
+    padding: var(--spacing-spacing-400);
+    box-shadow: 0 1px 2px rgba(198, 228, 246, 0.05);
+}
+
+.recommendation-text {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    line-height: var(--size-font-copy-body-line-height);
+    margin: 0;
+}
+
+/* Actions Section */
+.final-results-actions {
+    width: 100%;
+    margin-top: auto;
+    padding-top: var(--spacing-spacing-400);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-300);
+}
+
+.save-results-button {
+    width: 100%;
+    padding: var(--spacing-spacing-400);
+    background-color: var(--surface-primary-default);
+    color: var(--color-foundations-white);
+    border: none;
+    border-radius: var(--Border-Radius-200);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+.save-results-button:hover {
+    background-color: var(--surface-primary-default-hover);
+}
+
+.end-session-button {
+    background: none;
+    border: none;
+    color: var(--text-primary-default);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--Font-Secondary);
+    cursor: pointer;
+    padding: var(--spacing-spacing-200);
+    transition: color 200ms ease;
+}
+
+.end-session-button:hover {
+    color: var(--text-primary-default-hover);
+}
+
+/* Mobile Responsive */
+@media (max-width: 375px) {
+    .final-results-container {
+        gap: var(--spacing-spacing-300);
+        padding-top: var(--spacing-spacing-300);
+    }
+
+    .final-results-title {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .recommendation-card {
+        padding: var(--spacing-spacing-300);
+    }
+}

@@ -7,9 +7,16 @@ import ConnectingDevice from './ConnectingDevice'
 import ConnectedDevice from './ConnectedDevice'
 import MeasuringVitals from './MeasuringVitals'
 import VitalResults from './VitalResults'
+import Questionnaire from './Questionnaire'
+import ScreenLoader from './ScreenLoader'
+import FinalResults from './FinalResults'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('landing')
+  const [currentPage, setCurrentPage] = useState('loading')
+
+  const handleLoadComplete = () => {
+    setCurrentPage('landing')
+  }
 
   const handleContinueWithEmail = () => {
     setCurrentPage('signup')
@@ -69,8 +76,39 @@ function App() {
 
   const handleVitalResultsContinue = () => {
     // Navigate to questionnaire
-    console.log('Continuing to questionnaire')
-    // TODO: Navigate to questionnaire screen
+    setCurrentPage('questionnaire')
+  }
+
+  const handleQuestionnaireBack = () => {
+    // Go back to vital results screen
+    setCurrentPage('vital-results')
+  }
+
+  const handleQuestionnaireSubmit = (answers) => {
+    // Handle questionnaire submission
+    console.log('Questionnaire answers:', answers)
+    // Navigate to final results
+    setCurrentPage('final-results')
+  }
+
+  const handleFinalResultsBack = () => {
+    // Go back to questionnaire
+    setCurrentPage('questionnaire')
+  }
+
+  const handleSaveResults = () => {
+    // Save results functionality
+    console.log('Saving results...')
+    alert('Your results have been saved!')
+  }
+
+  const handleEndSession = () => {
+    // End session and return to landing
+    setCurrentPage('landing')
+  }
+
+  if (currentPage === 'loading') {
+    return <ScreenLoader onLoadComplete={handleLoadComplete} duration={3000} />
   }
 
   if (currentPage === 'signup') {
@@ -107,6 +145,27 @@ function App() {
       <VitalResults
         onBack={handleVitalResultsBack}
         onContinue={handleVitalResultsContinue}
+        systolic={118}
+        diastolic={76}
+      />
+    )
+  }
+
+  if (currentPage === 'questionnaire') {
+    return (
+      <Questionnaire
+        onBack={handleQuestionnaireBack}
+        onSubmit={handleQuestionnaireSubmit}
+      />
+    )
+  }
+
+  if (currentPage === 'final-results') {
+    return (
+      <FinalResults
+        onBack={handleFinalResultsBack}
+        onSaveResults={handleSaveResults}
+        onEndSession={handleEndSession}
         systolic={118}
         diastolic={76}
       />
