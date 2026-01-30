@@ -18,9 +18,10 @@
     height: 100%;
 }
 
-.lottie-animation {
+.screen-loader-logo {
     width: 120px;
     height: 120px;
+    object-fit: contain;
 }
 
 /* Fade out animation */

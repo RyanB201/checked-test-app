@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import './ScreenLoader.css'
+import checkedLogoWhite from './assets/checked-logo-white.png'
 
 function ScreenLoader({ onLoadComplete, duration = 3000 }) {
     const [isFading, setIsFading] = useState(false)
@@ -27,11 +27,10 @@ function ScreenLoader({ onLoadComplete, duration = 3000 }) {
     return (
         <div className={`screen-loader-page ${isFading ? 'fade-out' : ''}`}>
             <div className="screen-loader-container">
-                <DotLottieReact
-                    src="https://lottie.host/4fc46233-a063-4441-828f-efd9e2f6ead6/DSMpmk2QOv.lottie"
-                    loop
-                    autoplay
-                    className="lottie-animation"
+                <img
+                    src={checkedLogoWhite}
+                    alt="Checked Logo"
+                    className="screen-loader-logo"
                 />
             </div>
         </div>
