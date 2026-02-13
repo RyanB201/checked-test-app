@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './SignUp.css'
+import { supabase } from './supabaseClient'
 
-function SignUp({ onBack, onClose, onContinue }) {
+function SignUp({ onBack, onClose, onContinue, onLogin }) {
   const [formData, setFormData] = useState({
     firstName: '',
     email: '',
@@ -9,6 +10,8 @@ function SignUp({ onBack, onClose, onContinue }) {
   })
 
   const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
+  const [authError, setAuthError] = useState(null)
 
   // Calculate completion percentage
   const completion = () => {
@@ -22,23 +25,23 @@ function SignUp({ onBack, onClose, onContinue }) {
   // Validate form
   const validateForm = () => {
     const newErrors = {}
-    
+
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'First name is required'
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email address is required'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address'
     }
-    
+
     if (!formData.password.trim()) {
       newErrors.password = 'Password is required'
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters'
     }
-    
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -60,24 +63,67 @@ function SignUp({ onBack, onClose, onContinue }) {
       ...prev,
       [name]: value
     }))
-    // Clear error when user starts typing
+    // Clear errors when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
         [name]: ''
       }))
     }
+    if (authError) setAuthError(null)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (validateForm()) {
-      // Handle form submission
-      console.log('Form submitted:', formData)
-      // Navigate to next step
+    if (!validateForm()) return
+
+    setLoading(true)
+    setAuthError(null)
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            first_name: formData.firstName
+          }
+        }
+      })
+
+      if (error) {
+        // Handle specific Supabase errors
+        const msg = error.message?.toLowerCase() || ''
+        if (msg.includes('already registered') ||
+          msg.includes('already been registered')) {
+          setAuthError('duplicate')
+        } else if (msg.includes('rate limit') ||
+          msg.includes('security purposes') ||
+          msg.includes('request this after')) {
+          setAuthError('Too many sign-up attempts. Please wait a moment and try again.')
+        } else {
+          setAuthError(error.message || 'An error occurred during sign up.')
+        }
+        setLoading(false)
+        return
+      }
+
+      // Supabase may return a user with empty identities if email already exists
+      // (when "Confirm email" is enabled and the email is already confirmed)
+      if (data?.user && data.user.identities?.length === 0) {
+        setAuthError('duplicate')
+        setLoading(false)
+        return
+      }
+
+      // Success — navigate to demographics
       if (onContinue) {
         onContinue()
       }
+    } catch (err) {
+      setAuthError('An unexpected error occurred. Please try again.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -92,8 +138,8 @@ function SignUp({ onBack, onClose, onContinue }) {
             <span className="progress-text">Completion: {completionPercentage}%</span>
           </div>
           <div className="progress-bar">
-            <div 
-              className="progress-bar-fill" 
+            <div
+              className="progress-bar-fill"
               style={{ width: `${completionPercentage}%` }}
             ></div>
           </div>
@@ -103,19 +149,19 @@ function SignUp({ onBack, onClose, onContinue }) {
         <div className="signup-nav">
           <button className="nav-button" onClick={onBack}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span>Back</span>
           </button>
           <button className="nav-button nav-button-close" onClick={onClose}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </div>
 
         {/* Title */}
-        <h1 className="signup-title">Sign up for free</h1>
+        <h1 className="signup-title">Sign Up Today!</h1>
 
         {/* Form */}
         <form className="signup-form" onSubmit={handleSubmit}>
@@ -176,15 +222,39 @@ function SignUp({ onBack, onClose, onContinue }) {
             )}
           </div>
 
+          {/* Auth Error */}
+          {authError && (
+            <div className="auth-error-banner">
+              {authError === 'duplicate' ? (
+                <p>
+                  An account with this email already exists.{' '}
+                  <a href="#" className="auth-error-link" onClick={(e) => { e.preventDefault(); onLogin && onLogin(); }}>
+                    Log in instead
+                  </a>
+                </p>
+              ) : (
+                <p>{authError}</p>
+              )}
+            </div>
+          )}
+
           {/* Continue Button */}
           <button
             type="submit"
-            className={`btn btn-primary btn-continue ${!isFormComplete() ? 'btn-disabled' : ''}`}
-            disabled={!isFormComplete()}
+            className={`btn btn-primary btn-continue ${(!isFormComplete() || loading) ? 'btn-disabled' : ''}`}
+            disabled={!isFormComplete() || loading}
           >
-            Continue
+            {loading ? 'Signing up…' : 'Continue'}
           </button>
         </form>
+
+        {/* Login Link */}
+        <p className="login-link-text">
+          Have an account already?{' '}
+          <a href="#" className="login-link" onClick={(e) => { e.preventDefault(); onLogin && onLogin(); }}>
+            Log in
+          </a>
+        </p>
 
         {/* Legal Text */}
         <p className="legal-text">

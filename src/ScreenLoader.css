@@ -18,10 +18,9 @@
     height: 100%;
 }
 
-.screen-loader-logo {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
+.screen-loader-animation {
+    width: 450px;
+    height: 450px;
 }
 
 /* Fade out animation */

@@ -1,49 +1,60 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './ConnectedDevice.css'
 import checkCircleIcon from './assets/check-circle-icon.svg'
 
-function ConnectedDevice({ onContinue }) {
-    // Auto-transition after 2 seconds
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (onContinue) {
-                onContinue()
-            }
-        }, 2000)
-
-        return () => clearTimeout(timer)
-    }, [onContinue])
-
+function ConnectedDevice({ onContinue, onBack }) {
     return (
         <div className="connected-device-page">
             <div className="connected-device-container">
-                {/* Progress Section */}
-                <div className="connected-progress-section">
-                    <div className="connected-progress-header">
-                        <span className="connected-progress-text">Completion: 30%</span>
-                    </div>
-                    <div className="connected-progress-bar">
+                {/* Progress Bar */}
+                <div className="cdd-progress-section">
+                    <span className="cdd-progress-text">Completion: 20%</span>
+                    <div className="cdd-progress-bar">
                         <div
-                            className="connected-progress-bar-fill"
-                            style={{ width: '30%' }}
+                            className="cdd-progress-bar-fill"
+                            style={{ width: '20%' }}
                         ></div>
                     </div>
                 </div>
 
-                {/* Main Content */}
-                <div className="connected-device-content">
-                    {/* Title */}
-                    <h1 className="connected-device-title">Connect Your Device</h1>
+                {/* Back Button */}
+                <button className="cdd-back-btn" onClick={() => onBack && onBack()}>
+                    <span className="cdd-back-arrow material-symbols-outlined">arrow_back</span>
+                    <span className="cdd-back-text">Back</span>
+                </button>
 
-                    {/* Success Card */}
-                    <div className="connected-card">
-                        <div className="success-icon-container">
-                            <img src={checkCircleIcon} alt="Connected" className="check-circle-icon" />
+                {/* Main Content — vertically centered */}
+                <div className="cdd-main-content">
+                    <h1 className="cdd-title">Connect Your Device</h1>
+
+                    <div className="cdd-status-container">
+                        {/* Featured Icon — green success circle */}
+                        <div className="cdd-featured-icon">
+                            <img src={checkCircleIcon} alt="Connected" className="cdd-check-icon" />
                         </div>
 
-                        {/* Status Text */}
-                        <p className="connected-status-text">Connected</p>
+                        {/* Status */}
+                        <p className="cdd-status-text">Connected</p>
+
+                        {/* Subtitle */}
+                        <p className="cdd-subtitle">
+                            Your device has been successfully paired and is ready to use
+                        </p>
                     </div>
+                </div>
+
+                {/* Bottom Actions */}
+                <div className="cdd-bottom-actions">
+                    <button
+                        className="cdd-continue-btn"
+                        onClick={() => onContinue && onContinue()}
+                    >
+                        Continue
+                    </button>
+
+                    <p className="cdd-bottom-notice">
+                        Secure Bluetooth connection. Your device will sync data automatically once connected.
+                    </p>
                 </div>
             </div>
         </div>
@@ -51,4 +62,3 @@ function ConnectedDevice({ onContinue }) {
 }
 
 export default ConnectedDevice
-

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import checkedLogo from './assets/checked-logo.png'
 import SignUp from './SignUp'
@@ -10,15 +10,87 @@ import VitalResults from './VitalResults'
 import Questionnaire from './Questionnaire'
 import ScreenLoader from './ScreenLoader'
 import FinalResults from './FinalResults'
+import Login from './Login'
+import DemographicsForm from './DemographicsForm'
+import DeviceConnection from './DeviceConnection'
+import ResetPassword from './ResetPassword'
+import { supabase } from './supabaseClient'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('loading')
+  const [questionnaireAnswers, setQuestionnaireAnswers] = useState(null)
+
+  // Listen for auth state changes (handles Google OAuth redirect)
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'PASSWORD_RECOVERY') {
+          // User clicked password reset link — show reset screen
+          setCurrentPage('reset-password')
+          return
+        }
+
+        if (event === 'SIGNED_IN' && session) {
+          // Check if this is an OAuth sign-in (Google)
+          const provider = session.user?.app_metadata?.provider
+          if (provider === 'google') {
+            // Check if user is new by looking at created_at vs last_sign_in_at
+            const createdAt = new Date(session.user.created_at).getTime()
+            const now = Date.now()
+            const isNewUser = (now - createdAt) < 10000 // Created within last 10 seconds
+
+            if (isNewUser) {
+              // New Google user → demographics
+              setCurrentPage('demographics')
+            } else {
+              // Existing Google user → connect device
+              setCurrentPage('device-connection')
+            }
+          }
+        }
+      }
+    )
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   const handleLoadComplete = () => {
     setCurrentPage('landing')
   }
 
+  const handleResetPasswordComplete = () => {
+    setCurrentPage('login')
+  }
+
   const handleContinueWithEmail = () => {
+    setCurrentPage('signup')
+  }
+
+  const handleLogin = () => {
+    setCurrentPage('login')
+  }
+
+  const handleGoogleSignIn = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin
+      }
+    })
+    if (error) {
+      console.error('Google sign-in error:', error.message)
+    }
+  }
+
+  const handleLoginBack = () => {
+    setCurrentPage('landing')
+  }
+
+  const handleLoginContinue = () => {
+    setCurrentPage('device-connection')
+  }
+
+  const handleSwitchToSignUp = () => {
     setCurrentPage('signup')
   }
 
@@ -31,11 +103,33 @@ function App() {
   }
 
   const handleSignUpContinue = () => {
+    setCurrentPage('demographics')
+  }
+
+  const handleDemographicsBack = () => {
+    setCurrentPage('signup')
+  }
+
+  const handleDemographicsContinue = () => {
+    setCurrentPage('device-connection')
+  }
+
+  const handleDeviceConnect = (device) => {
+    setCurrentPage('measuring-vitals')
+  }
+
+  const handleDeviceScan = () => {
     setCurrentPage('connect-device')
   }
 
+  const handleDeviceSkip = () => {
+    // Skip device connection for now
+    console.log('Skipped device connection')
+    setCurrentPage('landing')
+  }
+
   const handleConnectDeviceBack = () => {
-    setCurrentPage('signup')
+    setCurrentPage('device-connection')
   }
 
   const handleConnectDeviceSkip = () => {
@@ -54,14 +148,22 @@ function App() {
     setCurrentPage('connected-device')
   }
 
+  const handleConnectingDeviceBack = () => {
+    setCurrentPage('device-connection')
+  }
+
   const handleConnectedDeviceContinue = () => {
     // Navigate to measuring vitals screen
     setCurrentPage('measuring-vitals')
   }
 
+  const handleConnectedDeviceBack = () => {
+    setCurrentPage('device-connection')
+  }
+
   const handleMeasuringVitalsBack = () => {
-    // Go back to connected device screen
-    setCurrentPage('connected-device')
+    // Go back to device connection screen
+    setCurrentPage('device-connection')
   }
 
   const handleMeasurementComplete = () => {
@@ -85,8 +187,8 @@ function App() {
   }
 
   const handleQuestionnaireSubmit = (answers) => {
-    // Handle questionnaire submission
-    console.log('Questionnaire answers:', answers)
+    // Store questionnaire answers for FinalResults
+    setQuestionnaireAnswers(answers)
     // Navigate to final results
     setCurrentPage('final-results')
   }
@@ -112,13 +214,41 @@ function App() {
   }
 
   if (currentPage === 'signup') {
-    return <SignUp onBack={handleBack} onClose={handleClose} onContinue={handleSignUpContinue} />
+    return <SignUp onBack={handleBack} onClose={handleClose} onContinue={handleSignUpContinue} onLogin={handleLogin} />
+  }
+
+  if (currentPage === 'demographics') {
+    return (
+      <DemographicsForm
+        onBack={handleDemographicsBack}
+        onContinue={handleDemographicsContinue}
+      />
+    )
+  }
+
+  if (currentPage === 'login') {
+    return (
+      <Login
+        onBack={handleLoginBack}
+        onSignUp={handleSwitchToSignUp}
+        onContinue={handleLoginContinue}
+      />
+    )
+  }
+
+  if (currentPage === 'reset-password') {
+    return (
+      <ResetPassword
+        onComplete={handleResetPasswordComplete}
+      />
+    )
   }
 
   if (currentPage === 'connecting-device') {
     return (
       <ConnectingDevice
         onConnectionComplete={handleConnectionComplete}
+        onBack={handleConnectingDeviceBack}
       />
     )
   }
@@ -127,6 +257,7 @@ function App() {
     return (
       <ConnectedDevice
         onContinue={handleConnectedDeviceContinue}
+        onBack={handleConnectedDeviceBack}
       />
     )
   }
@@ -168,6 +299,17 @@ function App() {
         onEndSession={handleEndSession}
         systolic={118}
         diastolic={76}
+        questionnaireAnswers={questionnaireAnswers}
+      />
+    )
+  }
+
+  if (currentPage === 'device-connection') {
+    return (
+      <DeviceConnection
+        onConnect={handleDeviceConnect}
+        onScanDevice={handleDeviceScan}
+        onSkip={handleDeviceSkip}
       />
     )
   }
@@ -207,7 +349,7 @@ function App() {
           <button className="btn btn-primary" onClick={handleContinueWithEmail}>
             Continue with Email
           </button>
-          <button className="btn btn-secondary">
+          <button className="btn btn-secondary" onClick={handleGoogleSignIn}>
             <svg className="google-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.64 9.20454C17.64 8.56636 17.5827 7.95272 17.4764 7.36363H9V10.845H13.8436C13.635 11.97 13.0009 12.9232 12.0477 13.5614V15.8195H14.9564C16.6582 14.2527 17.64 11.9455 17.64 9.20454Z" fill="#4285F4" />
               <path d="M9 18C11.43 18 13.467 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4204 9 14.4204C6.65454 14.4204 4.67182 12.8373 3.96409 10.71H0.957275V13.0418C2.43818 15.9832 5.48182 18 9 18Z" fill="#34A853" />
@@ -221,7 +363,7 @@ function App() {
         {/* Login Link */}
         <div className="login-link">
           <span>Have an account? </span>
-          <a href="#" className="link">Log in</a>
+          <a href="#" className="link" onClick={(e) => { e.preventDefault(); handleLogin(); }}>Log in</a>
         </div>
       </div>
     </div>

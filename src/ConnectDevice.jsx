@@ -2,7 +2,7 @@ import React from 'react'
 import './ConnectDevice.css'
 import deviceIcon from './assets/device-icon.png'
 
-function ConnectDevice({ onBack, onSkip, onContinue }) {
+function ConnectDevice({ onBack, onContinue }) {
   return (
     <div className="connect-device-page">
       <div className="connect-device-container">
@@ -12,8 +12,8 @@ function ConnectDevice({ onBack, onSkip, onContinue }) {
             <span className="progress-text">Completion: 10%</span>
           </div>
           <div className="progress-bar">
-            <div 
-              className="progress-bar-fill" 
+            <div
+              className="progress-bar-fill"
               style={{ width: '10%' }}
             ></div>
           </div>
@@ -23,7 +23,7 @@ function ConnectDevice({ onBack, onSkip, onContinue }) {
         <div className="connect-device-nav">
           <button className="nav-button" onClick={onBack}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span>Back</span>
           </button>

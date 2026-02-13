@@ -5,7 +5,8 @@
   align-items: flex-start;
   justify-content: center;
   padding: var(--spacing-spacing-form-horizontal-spacing);
-  font-family: var(--Font-Secondary); /* Montserrat as default body font */
+  font-family: var(--Font-Secondary);
+  /* Montserrat as default body font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -37,7 +38,8 @@
   font-size: var(--size-font-copy-body-sm-text-size);
   font-weight: var(--font-weight-regular);
   color: var(--text-default-body);
-  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  font-family: var(--Font-Secondary);
+  /* Montserrat for body text */
 }
 
 .progress-bar {
@@ -72,7 +74,8 @@
   color: var(--text-primary-default);
   font-size: var(--Font-Copy-body-text-size);
   font-weight: var(--font-weight-medium);
-  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  font-family: var(--Font-Secondary);
+  /* Montserrat for body text */
   cursor: pointer;
   padding: var(--spacing-spacing-200);
   transition: color 200ms ease;
@@ -93,13 +96,14 @@
 
 /* Title */
 .signup-title {
-  font-size: var(--Font-Headings-H3-text-size);
-  font-weight: var(--font-weight-bold);
+  font-size: var(--Font-Headings-H5-text-size);
+  font-weight: var(--font-weight-regular);
   color: var(--text-default-heading);
-  line-height: var(--size-font-headings-h3-line-height);
+  line-height: var(--size-font-headings-h5-line-height);
   margin: 0;
   text-align: center;
-  font-family: var(--Font-Primary); /* Sora for headings */
+  font-family: var(--Font-Primary);
+  /* Sora for headings */
 }
 
 /* Form */
@@ -121,7 +125,8 @@
   font-size: var(--Font-Copy-body-text-size);
   font-weight: var(--font-weight-medium);
   color: var(--text-default-body);
-  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  font-family: var(--Font-Secondary);
+  /* Montserrat for body text */
 }
 
 .form-input {
@@ -134,7 +139,8 @@
   font-weight: var(--font-weight-regular);
   color: var(--text-default-body);
   background-color: var(--color-foundations-white);
-  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  font-family: var(--Font-Secondary);
+  /* Montserrat for body text */
   transition: all 200ms ease;
   outline: none;
 }
@@ -159,8 +165,36 @@
 .form-error {
   font-size: var(--size-font-copy-body-sm-text-size);
   color: var(--text-error-default);
-  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  font-family: var(--Font-Secondary);
+  /* Montserrat for body text */
   margin-top: calc(var(--spacing-spacing-100) * -1);
+}
+
+/* Auth error banner */
+.auth-error-banner {
+  background-color: var(--Error-50, #FEF2F2);
+  border: 1px solid var(--Error-200, #FECACA);
+  border-radius: var(--Border-Radius-200, 8px);
+  padding: var(--spacing-spacing-300) var(--spacing-spacing-400);
+  margin-top: var(--spacing-spacing-200);
+}
+
+.auth-error-banner p {
+  font-size: var(--size-font-copy-body-sm-text-size);
+  color: var(--Error-600, #DC2626);
+  font-family: var(--Font-Secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.auth-error-link {
+  color: var(--surface-primary-default);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+}
+
+.auth-error-link:hover {
+  opacity: 0.8;
 }
 
 .btn-continue {
@@ -187,7 +221,8 @@
   line-height: var(--size-font-copy-body-sm-line-height);
   margin: 0;
   padding: 0 var(--spacing-spacing-400);
-  font-family: var(--Font-Secondary); /* Montserrat for body text */
+  font-family: var(--Font-Secondary);
+  /* Montserrat for body text */
 }
 
 .legal-link {
@@ -202,13 +237,35 @@
   text-decoration: underline;
 }
 
+/* Login Link */
+.signup-page .login-link-text {
+  font-size: var(--Font-Copy-caption-text-size);
+  color: var(--text-default-caption);
+  text-align: center;
+  line-height: var(--size-font-copy-caption-line-height);
+  margin: 0;
+  font-family: var(--Font-Secondary);
+}
+
+.signup-page .login-link {
+  color: var(--Primary-500);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  transition: color 200ms ease;
+}
+
+.signup-page .login-link:hover {
+  color: var(--text-primary-default-hover);
+  text-decoration: underline;
+}
+
 /* Mobile Responsive */
 @media (max-width: 375px) {
   .signup-container {
     gap: var(--spacing-spacing-500);
     padding-top: var(--spacing-spacing-300);
   }
-  
+
   .signup-title {
     font-size: var(--Font-Headings-H4-text-size);
     line-height: var(--size-font-headings-h4-line-height);

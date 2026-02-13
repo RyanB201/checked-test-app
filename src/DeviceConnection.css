@@ -1,0 +1,279 @@
+.device-connection-page {
+    min-height: 100vh;
+    background-color: var(--color-foundations-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-spacing-form-horizontal-spacing);
+    font-family: var(--Font-Secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.device-connection-container {
+    width: 100%;
+    max-width: var(--size-frame-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-600);
+    padding-top: var(--spacing-spacing-400);
+}
+
+/* ==========================================
+   SEGMENTED PROGRESS BAR
+   ========================================== */
+.dc-progress {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    border-radius: var(--Border-Radius-300);
+    overflow: hidden;
+}
+
+.dc-progress-segment {
+    flex: 1;
+    height: 6px;
+    min-width: 0;
+}
+
+.dc-progress-segment:first-child {
+    border-radius: var(--Border-Radius-100) 0 0 var(--Border-Radius-100);
+}
+
+.dc-progress-segment:last-child {
+    border-radius: 0 var(--Border-Radius-100) var(--Border-Radius-100) 0;
+}
+
+.dc-progress-segment.filled {
+    background-color: var(--surface-primary-default);
+}
+
+/* ==========================================
+   HEADING
+   ========================================== */
+.dc-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-spacing-200);
+}
+
+.dc-title {
+    font-size: var(--Font-Headings-H5-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    line-height: var(--size-font-headings-h5-line-height);
+    margin: 0;
+    font-family: var(--Font-Primary);
+}
+
+.dc-subtitle {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--number-scale-500);
+    margin: 0;
+    font-family: var(--Font-Secondary);
+}
+
+/* ==========================================
+   DEVICES SECTION
+   ========================================== */
+.dc-devices-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-400);
+}
+
+.dc-devices-heading {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
+    margin: 0;
+    font-family: var(--Font-Secondary);
+}
+
+.dc-devices-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-400);
+}
+
+/* ==========================================
+   DEVICE CARD
+   ========================================== */
+.dc-device-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-400);
+    padding: 17px;
+    background-color: var(--surface-default);
+    border: 1px solid var(--border-default);
+    border-radius: var(--Border-Radius-200);
+}
+
+.dc-device-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background-color: var(--Primary-50);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dc-device-icon {
+    font-size: 24px;
+    color: var(--primary-600);
+}
+
+.dc-device-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.dc-device-name {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: 600;
+    color: var(--text-default-body);
+    line-height: 20px;
+    margin: 0;
+    font-family: var(--Font-Primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dc-device-status {
+    font-size: 12px;
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-caption);
+    line-height: 16px;
+    margin: 0;
+    font-family: var(--Font-Secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==========================================
+   CONNECT BUTTON (small pill on each card)
+   ========================================== */
+.dc-connect-btn {
+    width: 84px;
+    height: 32px;
+    border-radius: 999px;
+    background-color: var(--surface-primary-default);
+    border: 1px solid var(--surface-primary-default);
+    color: var(--color-foundations-white);
+    font-family: var(--Font-Secondary);
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 200ms ease;
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+}
+
+.dc-connect-btn:hover {
+    background-color: var(--surface-primary-default-hover);
+}
+
+.dc-connect-btn:active {
+    transform: scale(0.97);
+}
+
+/* ==========================================
+   BOTTOM ACTIONS
+   ========================================== */
+.dc-bottom-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-400);
+    align-items: center;
+    margin-top: var(--spacing-spacing-200);
+}
+
+.dc-scan-btn {
+    width: 100%;
+    min-height: 48px;
+    padding: var(--spacing-spacing-300) var(--spacing-spacing-500);
+    border-radius: 999px;
+    background-color: var(--surface-primary-default);
+    border: 1px solid var(--surface-primary-default);
+    color: var(--color-foundations-white);
+    font-family: var(--Font-Secondary);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 200ms ease;
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+}
+
+.dc-scan-btn:hover {
+    background-color: var(--surface-primary-default-hover);
+}
+
+.dc-scan-btn:active {
+    transform: scale(0.98);
+}
+
+.dc-skip-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--Font-Secondary);
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: 500;
+    color: var(--primary-600);
+    line-height: 20px;
+    padding: var(--spacing-spacing-200) 0;
+}
+
+.dc-skip-btn:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================
+   PRIVACY NOTICE
+   ========================================== */
+.dc-privacy-notice {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-caption);
+    text-align: center;
+    line-height: var(--number-scale-500);
+    margin: 0;
+    padding: 0 var(--spacing-spacing-200);
+    font-family: var(--Font-Secondary);
+    margin-top: auto;
+    padding-top: var(--spacing-spacing-lg);
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+@media (max-width: 375px) {
+    .device-connection-container {
+        gap: var(--spacing-spacing-500);
+        padding-top: var(--spacing-spacing-300);
+    }
+
+    .dc-title {
+        font-size: var(--Font-Headings-H6-text-size);
+        line-height: var(--size-font-headings-h6-line-height);
+    }
+}

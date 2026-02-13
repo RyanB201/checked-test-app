@@ -1,32 +1,35 @@
+/* =======================================
+   FINAL RESULTS PAGE - LAYOUT
+   ======================================= */
 .final-results-page {
     min-height: 100vh;
-    background-color: var(--color-foundations-white);
+    min-height: 100dvh;
+    background-color: var(--surface-page);
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: var(--spacing-spacing-form-horizontal-spacing);
+    flex-direction: column;
     font-family: var(--Font-Secondary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
 }
 
-.final-results-container {
-    width: 100%;
-    max-width: var(--size-frame-width);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-spacing-400);
-    padding-top: var(--spacing-spacing-400);
-    min-height: calc(100vh - var(--spacing-spacing-form-horizontal-spacing) * 2);
+/* =======================================
+   STICKY HEADER
+   ======================================= */
+.final-results-header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: var(--color-foundations-white);
+    padding: var(--spacing-spacing-500) var(--spacing-spacing-400) var(--spacing-spacing-300);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Progress Section */
 .final-results-progress-section {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-spacing-200);
-    margin-bottom: var(--spacing-spacing-200);
+    margin-bottom: var(--spacing-spacing-400);
 }
 
 .final-results-progress-header {
@@ -37,15 +40,15 @@
 
 .final-results-progress-text {
     font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-medium);
     color: var(--text-default-body);
     font-family: var(--Font-Secondary);
 }
 
 .final-results-progress-bar {
     width: 100%;
-    height: var(--number-scale-100);
-    background-color: var(--Primary-100);
+    height: 6px;
+    background-color: var(--color-neutral-200);
     border-radius: var(--Border-Radius-round);
     overflow: hidden;
 }
@@ -57,32 +60,23 @@
     border-radius: var(--Border-Radius-round);
 }
 
-/* Navigation Bar */
-.final-results-nav {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    margin-bottom: var(--spacing-spacing-200);
-}
-
 .final-results-back-button {
     display: flex;
     align-items: center;
     gap: var(--spacing-spacing-100);
     background: none;
     border: none;
-    color: var(--text-primary-default);
+    color: var(--surface-primary-default);
     font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-medium);
     font-family: var(--Font-Secondary);
     cursor: pointer;
-    padding: var(--spacing-spacing-200);
-    transition: color 200ms ease;
+    padding: 0;
+    transition: opacity 200ms ease;
 }
 
 .final-results-back-button:hover {
-    color: var(--text-primary-default-hover);
+    opacity: 0.8;
 }
 
 .final-results-back-button svg {
@@ -90,118 +84,429 @@
     height: 20px;
 }
 
-/* Main Content */
-.final-results-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-spacing-400);
-    width: 100%;
+/* =======================================
+   SCROLLABLE MAIN CONTENT
+   ======================================= */
+.final-results-main {
     flex: 1;
-}
-
-/* Header Section */
-.final-results-header {
+    padding: var(--spacing-spacing-400) var(--spacing-spacing-400);
+    padding-bottom: 200px;
+    /* Space for fixed footer */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-spacing-200);
-    text-align: center;
+    gap: var(--spacing-spacing-400);
+    overflow-y: auto;
 }
 
 .final-results-title {
-    font-size: var(--Font-Headings-H5-text-size);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--Font-Headings-H3-text-size);
+    font-weight: var(--font-weight-bold);
     color: var(--text-default-heading);
-    line-height: var(--size-font-headings-h5-line-height);
+    line-height: var(--size-font-headings-h3-line-height);
     margin: 0;
     font-family: var(--Font-Primary);
 }
 
-/* Blood Pressure Display */
-.blood-pressure-section {
+/* =======================================
+   OVERALL STATUS CARD
+   ======================================= */
+.status-card {
+    width: 100%;
+    background-color: var(--color-foundations-white);
+    border-radius: var(--Border-Radius-300);
+    padding: var(--spacing-spacing-400);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-neutral-100);
+}
+
+.status-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-card-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-300);
+}
+
+.status-check-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--Success-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--Success-600);
+}
+
+.status-check-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.status-card-label {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+}
+
+.status-badge {
+    padding: var(--spacing-spacing-100) var(--spacing-spacing-400);
+    border-radius: var(--Border-Radius-round);
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--Font-Secondary);
+}
+
+.status-badge-normal {
+    background-color: var(--Success-100);
+    color: var(--Success-600);
+}
+
+.status-badge-high {
+    background-color: var(--Error-100);
+    color: var(--Error-600);
+}
+
+.status-badge-low {
+    background-color: var(--Warning-100);
+    color: var(--Warning-600);
+}
+
+.status-badge-elevated {
+    background-color: var(--Warning-100);
+    color: var(--Warning-600);
+}
+
+/* =======================================
+   BLOOD PRESSURE METRICS CARD
+   ======================================= */
+.metrics-card {
+    width: 100%;
+    background-color: var(--color-foundations-white);
+    border-radius: var(--Border-Radius-300);
+    padding: var(--spacing-spacing-500);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-neutral-100);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: var(--spacing-spacing-500);
+}
+
+.metrics-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.metrics-card-title-group {
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-spacing-100);
 }
 
-.blood-pressure-label {
+.metrics-card-title {
     font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-default-heading);
-    font-family: var(--Font-Secondary);
+    font-weight: var(--font-weight-bold);
+    color: var(--surface-primary-default);
+    font-family: var(--Font-Primary);
     margin: 0;
 }
 
-.blood-pressure-value {
-    font-size: var(--Font-Copy-body-text-size);
+.metrics-card-subtitle {
+    font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-regular);
-    color: var(--text-default-body);
+    color: var(--text-default-caption);
     font-family: var(--Font-Secondary);
-    margin: 0;
 }
 
-/* Status Section */
-.status-section {
+.metrics-card-value {
+    font-size: var(--Font-Headings-H3-text-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-default-heading);
+    font-family: var(--Font-Primary);
+}
+
+.metrics-divider {
+    height: 1px;
+    background-color: var(--color-neutral-100);
+    width: 100%;
+}
+
+/* Metrics Section (Systolic/Diastolic) */
+.metrics-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--spacing-spacing-200);
 }
 
-.status-icon-container {
-    width: 56px;
-    height: 56px;
+.metrics-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.metrics-section-label {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+}
+
+.metrics-section-value {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-default-heading);
+    font-family: var(--Font-Secondary);
+}
+
+/* Range Bar - New Design */
+.metrics-range-bar {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    margin-top: var(--spacing-spacing-100);
+    margin-bottom: var(--spacing-spacing-100);
+}
+
+.metrics-range-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-neutral-200);
+    border-radius: var(--Border-Radius-round);
+    overflow: hidden;
+}
+
+.metrics-range-highlight {
+    position: absolute;
+    height: 100%;
+    background-color: var(--Success-200);
+    border-radius: 2px;
+}
+
+.metrics-range-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: var(--surface-primary-default);
+    border: 2px solid var(--color-foundations-white);
     border-radius: 50%;
-    background-color: var(--Success-100, #dcfce7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.metrics-range-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metrics-range-label {
+    font-size: var(--Font-Copy-caption-text-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-default-placeholder);
+    font-family: var(--Font-Secondary);
+}
+
+.metrics-range-label-normal {
+    color: var(--Success-600);
+}
+
+/* =======================================
+   HEALTH GUIDANCE CARD
+   ======================================= */
+.guidance-card {
+    width: 100%;
+    background-color: var(--color-foundations-white);
+    border-radius: var(--Border-Radius-300);
+    padding: var(--spacing-spacing-500);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-neutral-100);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-300);
+}
+
+.guidance-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-300);
+}
+
+.guidance-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--Primary-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--surface-primary-default);
+}
+
+.guidance-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.guidance-card-title {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--surface-primary-default);
+    font-family: var(--Font-Primary);
+    margin: 0;
+}
+
+.guidance-card-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    font-family: var(--Font-Secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.guidance-disclaimer {
+    background-color: var(--surface-page);
+    border-left: 4px solid var(--surface-primary-default);
+    padding: var(--spacing-spacing-300);
+    border-radius: 0 var(--Border-Radius-200) var(--Border-Radius-200) 0;
+}
+
+.guidance-disclaimer-text {
+    font-size: var(--Font-Copy-caption-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-caption);
+    font-family: var(--Font-Secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.guidance-disclaimer-text strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-default-heading);
+    display: block;
+}
+
+/* =======================================
+   REPORTED SYMPTOMS CARD
+   ======================================= */
+.symptoms-card {
+    width: 100%;
+    background-color: var(--color-foundations-white);
+    border-radius: var(--Border-Radius-300);
+    padding: var(--spacing-spacing-500);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-neutral-100);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-300);
+}
+
+.symptoms-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-300);
+}
+
+.symptoms-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.status-icon {
-    width: 28px;
-    height: 28px;
-    color: var(--Success-600, #16a34a);
+.symptoms-icon svg {
+    width: 16px;
+    height: 16px;
 }
 
-.status-label {
+.symptoms-icon-urgent {
+    background-color: var(--Warning-100);
+    color: var(--Warning-600);
+}
+
+.symptoms-icon-emergency {
+    background-color: var(--Error-100);
+    color: var(--Error-600);
+}
+
+.symptoms-card-title {
     font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     color: var(--text-default-heading);
-    font-family: var(--Font-Secondary);
+    font-family: var(--Font-Primary);
     margin: 0;
 }
 
-/* Recommendation Card */
-.recommendation-card {
-    width: 100%;
-    background-color: var(--color-foundations-white);
-    border: var(--Border-Width-xs) solid var(--Gray-200, #e5e7eb);
-    border-radius: var(--Border-Radius-200);
-    padding: var(--spacing-spacing-400);
-    box-shadow: 0 1px 2px rgba(198, 228, 246, 0.05);
+.symptoms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
 }
 
-.recommendation-text {
-    font-size: var(--Font-Copy-body-text-size);
+.symptom-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-300);
+}
+
+.symptom-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.symptom-dot-urgent {
+    background-color: var(--Warning-500);
+}
+
+.symptom-dot-emergency {
+    background-color: var(--Error-500);
+}
+
+.symptom-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-body);
     font-family: var(--Font-Secondary);
-    line-height: var(--size-font-copy-body-line-height);
-    margin: 0;
 }
 
-/* Actions Section */
-.final-results-actions {
-    width: 100%;
-    margin-top: auto;
-    padding-top: var(--spacing-spacing-400);
+/* =======================================
+   GUIDANCE CARD — TIER VARIANTS
+
+
+/* =======================================
+   FIXED BOTTOM FOOTER
+   ======================================= */
+.final-results-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--color-neutral-200);
+    padding: var(--spacing-spacing-400);
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--spacing-spacing-300);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .save-results-button {
@@ -210,12 +515,13 @@
     background-color: var(--surface-primary-default);
     color: var(--color-foundations-white);
     border: none;
-    border-radius: var(--Border-Radius-200);
+    border-radius: var(--Border-Radius-300);
     font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     font-family: var(--Font-Secondary);
     cursor: pointer;
     transition: background-color 200ms ease;
+    box-shadow: 0 2px 4px rgba(28, 119, 130, 0.3);
 }
 
 .save-results-button:hover {
@@ -223,34 +529,66 @@
 }
 
 .end-session-button {
-    background: none;
-    border: none;
-    color: var(--text-primary-default);
+    width: 100%;
+    padding: var(--spacing-spacing-400);
+    background-color: transparent;
+    color: var(--text-default-body);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--Border-Radius-300);
     font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-bold);
     font-family: var(--Font-Secondary);
     cursor: pointer;
-    padding: var(--spacing-spacing-200);
-    transition: color 200ms ease;
+    transition: all 200ms ease;
 }
 
 .end-session-button:hover {
-    color: var(--text-primary-default-hover);
+    background-color: var(--surface-page);
+    border-color: var(--color-neutral-300);
 }
 
-/* Mobile Responsive */
+/* =======================================
+   RESPONSIVE STYLES
+   ======================================= */
 @media (max-width: 375px) {
-    .final-results-container {
+    .final-results-header-sticky {
+        padding: var(--spacing-spacing-400) var(--spacing-spacing-300) var(--spacing-spacing-200);
+    }
+
+    .final-results-main {
+        padding: var(--spacing-spacing-300);
+        padding-bottom: 180px;
         gap: var(--spacing-spacing-300);
-        padding-top: var(--spacing-spacing-300);
     }
 
     .final-results-title {
-        font-size: 20px;
-        line-height: 24px;
+        font-size: var(--Font-Headings-H4-text-size);
+        line-height: var(--size-font-headings-h4-line-height);
     }
 
-    .recommendation-card {
+    .metrics-card,
+    .status-card,
+    .guidance-card {
+        padding: var(--spacing-spacing-400);
+    }
+
+    .metrics-card-value {
+        font-size: var(--Font-Headings-H4-text-size);
+    }
+
+    .final-results-footer {
         padding: var(--spacing-spacing-300);
+    }
+
+    .save-results-button,
+    .end-session-button {
+        padding: var(--spacing-spacing-300);
+    }
+}
+
+/* Safe area for devices with notch/home indicator */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .final-results-footer {
+        padding-bottom: calc(var(--spacing-spacing-400) + env(safe-area-inset-bottom));
     }
 }

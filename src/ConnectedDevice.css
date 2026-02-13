@@ -15,104 +15,128 @@
     max-width: var(--size-frame-width);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-600);
     padding-top: var(--spacing-spacing-400);
     min-height: 100vh;
+    position: relative;
 }
 
-/* Progress Section */
-.connected-progress-section {
+/* ==========================================
+   PROGRESS BAR
+   ========================================== */
+.cdd-progress-section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-200);
-    margin-bottom: var(--spacing-spacing-200);
+    gap: var(--spacing-spacing-300);
 }
 
-.connected-progress-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.connected-progress-text {
+.cdd-progress-text {
     font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-body);
     font-family: var(--Font-Secondary);
+    line-height: var(--number-scale-500);
 }
 
-.connected-progress-bar {
+.cdd-progress-bar {
     width: 100%;
-    height: var(--number-scale-100);
+    height: 4px;
     background-color: var(--Primary-100);
     border-radius: var(--Border-Radius-round);
     overflow: hidden;
 }
 
-.connected-progress-bar-fill {
+.cdd-progress-bar-fill {
     height: 100%;
     background-color: var(--surface-primary-default);
     transition: width 300ms ease;
     border-radius: var(--Border-Radius-round);
 }
 
-/* Main Content */
-.connected-device-content {
+/* ==========================================
+   BACK BUTTON
+   ========================================== */
+.cdd-back-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-200);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-spacing-200) var(--spacing-spacing-300);
+    border-radius: 999px;
+    margin-top: var(--spacing-spacing-200);
+    align-self: flex-start;
+}
+
+.cdd-back-arrow {
+    font-size: 20px;
+    color: var(--surface-primary-default);
+}
+
+.cdd-back-text {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--surface-primary-default);
+    font-family: var(--Font-Secondary);
+    line-height: 1;
+}
+
+/* ==========================================
+   MAIN CONTENT — vertically centered
+   ========================================== */
+.cdd-main-content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-spacing-600);
-    width: 100%;
-    flex: 1;
     justify-content: center;
-    padding: var(--spacing-spacing-400) 0;
+    gap: var(--spacing-spacing-600);
 }
 
-/* Title */
-.connected-device-title {
-    font-size: var(--Font-Headings-H6-text-size);
+.cdd-title {
+    font-size: var(--number-scale-500);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-heading);
-    line-height: var(--size-font-headings-h6-line-height);
+    line-height: var(--number-scale-600);
     margin: 0;
     text-align: center;
     font-family: var(--Font-Primary);
 }
 
-/* Connection Card */
-.connected-card {
-    width: 100%;
-    max-width: 220px;
+/* ==========================================
+   STATUS CONTAINER (icon + text group)
+   ========================================== */
+.cdd-status-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-spacing-500);
-    padding: var(--spacing-spacing-600) var(--spacing-spacing-400);
+    gap: var(--spacing-spacing-400);
+    width: 100%;
+    padding: 0 var(--spacing-spacing-300);
+    padding-bottom: var(--spacing-spacing-500);
     background-color: var(--color-foundations-white);
-    border: var(--Border-Width-xs) solid var(--border-default);
-    border-radius: var(--Border-Radius-200);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-width-lg);
 }
 
-/* Success Icon Container */
-.success-icon-container {
+/* Featured icon — green success circle */
+.cdd-featured-icon {
     width: 56px;
     height: 56px;
     background-color: var(--Success-100);
-    border-radius: 50%;
+    border-radius: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
-.check-circle-icon {
+.cdd-check-icon {
     width: 28px;
     height: 28px;
 }
 
-/* Status Text */
-.connected-status-text {
+.cdd-status-text {
     font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-semibold);
     color: var(--text-default-body);
@@ -122,28 +146,82 @@
     font-family: var(--Font-Secondary);
 }
 
-/* Mobile Responsive */
-@media (max-width: 375px) {
-    .connected-device-container {
-        gap: var(--spacing-spacing-500);
-        padding-top: var(--spacing-spacing-300);
-    }
+.cdd-subtitle {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
+    text-align: center;
+    margin: 0;
+    font-family: var(--Font-Secondary);
+    max-width: 327px;
+}
 
-    .connected-device-title {
+/* ==========================================
+   BOTTOM ACTIONS
+   ========================================== */
+.cdd-bottom-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-400);
+    padding-bottom: var(--spacing-spacing-400);
+}
+
+.cdd-continue-btn {
+    width: 100%;
+    min-height: 48px;
+    padding: var(--spacing-spacing-300) var(--spacing-spacing-500);
+    border-radius: 999px;
+    background-color: var(--surface-primary-default);
+    border: 1px solid var(--surface-primary-default);
+    color: var(--color-foundations-white);
+    font-family: var(--Font-Secondary);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    line-height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 200ms ease;
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+}
+
+.cdd-continue-btn:hover {
+    background-color: var(--surface-primary-default-hover);
+}
+
+.cdd-continue-btn:active {
+    transform: scale(0.98);
+}
+
+.cdd-bottom-notice {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    text-align: center;
+    line-height: var(--number-scale-500);
+    margin: 0;
+    font-family: var(--Font-Secondary);
+    max-width: 318px;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+@media (max-width: 375px) {
+    .cdd-title {
         font-size: 18px;
         line-height: 22px;
     }
 
-    .connected-card {
-        padding: var(--spacing-spacing-500) var(--spacing-spacing-300);
-    }
-
-    .success-icon-container {
+    .cdd-featured-icon {
         width: 48px;
         height: 48px;
     }
 
-    .check-circle-icon {
+    .cdd-check-icon {
         width: 24px;
         height: 24px;
     }

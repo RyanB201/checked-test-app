@@ -1,0 +1,354 @@
+.demographics-page {
+    min-height: 100vh;
+    background-color: var(--color-foundations-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-spacing-form-horizontal-spacing);
+    font-family: var(--Font-Secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.demographics-container {
+    width: 100%;
+    max-width: var(--size-frame-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-600);
+    padding-top: var(--spacing-spacing-400);
+}
+
+/* ==========================================
+   SEGMENTED PROGRESS BAR
+   ========================================== */
+.demographics-progress {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+    border-radius: var(--Border-Radius-300);
+    overflow: hidden;
+}
+
+.demographics-progress-segment {
+    flex: 1;
+    height: 6px;
+    min-width: 0;
+}
+
+.demographics-progress-segment:first-child {
+    border-radius: var(--Border-Radius-100) 0 0 var(--Border-Radius-100);
+}
+
+.demographics-progress-segment:last-child {
+    border-radius: 0 var(--Border-Radius-100) var(--Border-Radius-100) 0;
+}
+
+.demographics-progress-segment.filled {
+    background-color: var(--surface-primary-default);
+}
+
+.demographics-progress-segment.unfilled {
+    background-color: var(--Primary-50);
+}
+
+/* ==========================================
+   HEADING
+   ========================================== */
+.demographics-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-200);
+}
+
+.demographics-title {
+    font-size: var(--Font-Headings-H5-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    line-height: var(--size-font-headings-h5-line-height);
+    margin: 0;
+    text-align: center;
+    font-family: var(--Font-Primary);
+}
+
+.demographics-subtitle {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
+    margin: 0;
+    text-align: center;
+    font-family: var(--Font-Secondary);
+}
+
+/* ==========================================
+   FORM FIELDS
+   ========================================== */
+.demographics-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-600);
+    width: 100%;
+    margin-top: var(--spacing-spacing-xs);
+}
+
+.demographics-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+    width: 100%;
+}
+
+.demographics-label {
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
+    font-family: var(--Font-Secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-spacing-100);
+}
+
+.demographics-label .required-asterisk {
+    color: var(--icon-error-default);
+    font-weight: var(--font-weight-bold);
+}
+
+.demographics-input {
+    width: 100%;
+    padding: var(--spacing-spacing-200) var(--spacing-spacing-300);
+    border: var(--Border-Width-xs) solid var(--border-default);
+    border-radius: var(--Border-Radius-100);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    background-color: var(--surface-default);
+    font-family: var(--Font-Secondary);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
+    transition: all 200ms ease;
+    outline: none;
+}
+
+.demographics-input::placeholder {
+    color: var(--text-default-placeholder);
+}
+
+.demographics-input:focus {
+    border-color: var(--border-primary-focus);
+}
+
+.demographics-input-error {
+    border-color: var(--border-error-default);
+}
+
+.demographics-error {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    color: var(--text-error-default);
+    font-family: var(--Font-Secondary);
+    margin-top: calc(var(--spacing-spacing-100) * -1);
+}
+
+/* ==========================================
+   WEIGHT ROW (input + toggle)
+   ========================================== */
+.demographics-weight-row {
+    display: flex;
+    gap: var(--spacing-spacing-200);
+    align-items: flex-end;
+    width: 100%;
+}
+
+.demographics-weight-input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+}
+
+/* ==========================================
+   UNIT TOGGLE (kg / lbs)
+   ========================================== */
+.unit-toggle {
+    display: flex;
+    align-items: center;
+    background-color: var(--surface-default);
+    border: var(--Border-Width-xs) solid var(--border-default);
+    border-radius: var(--Border-Radius-100);
+    padding: 4px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.unit-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 32px;
+    border: none;
+    border-radius: var(--number-scale-round);
+    background: none;
+    cursor: pointer;
+    font-family: var(--Font-Secondary);
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-default-body);
+    line-height: var(--size-font-copy-body-sm-line-height);
+    transition: all 200ms ease;
+}
+
+.unit-toggle-btn.active {
+    background-color: var(--surface-primary-default);
+    color: var(--color-foundations-white);
+}
+
+.unit-toggle-btn:not(.active):hover {
+    background-color: var(--surface-page-secondary);
+}
+
+/* ==========================================
+   GENDER SELECTION
+   ========================================== */
+.demographics-gender-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-200);
+    width: 100%;
+}
+
+.demographics-gender-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-default-body);
+    line-height: 22.5px;
+    font-family: var(--Font-Secondary);
+}
+
+.demographics-gender-label .required-asterisk {
+    color: #f43f5e;
+    font-weight: 500;
+}
+
+.demographics-gender-options {
+    display: flex;
+    gap: var(--spacing-spacing-300);
+}
+
+.gender-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 21px 25px;
+    background-color: var(--surface-default);
+    border: 1px solid var(--surface-default);
+    border-radius: var(--Border-Radius-300);
+    cursor: pointer;
+    transition: all 200ms ease;
+    width: 106px;
+}
+
+.gender-card:hover {
+    border-color: var(--border-primary-default);
+}
+
+.gender-card.selected {
+    border-color: var(--border-primary-default);
+    background-color: var(--surface-primary-default-subtle);
+}
+
+.gender-card-icon {
+    font-size: 24px;
+    line-height: 24px;
+    color: var(--icon-primary-default);
+    font-family: 'Material Symbols Outlined';
+    font-weight: 100;
+    font-style: normal;
+    display: block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+}
+
+.gender-card-label {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: 500;
+    color: var(--icon-primary-default);
+    font-family: var(--Font-Secondary);
+    line-height: var(--spacing-spacing-500);
+    text-align: center;
+    margin-top: 2px;
+}
+
+/* ==========================================
+   BOTTOM SECTION (Button + Privacy Notice)
+   ========================================== */
+.demographics-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-spacing-800);
+    align-items: stretch;
+    margin-top: var(--spacing-spacing-lg);
+}
+
+.demographics-continue-btn {
+    width: 100%;
+    min-height: 48px;
+    padding: var(--spacing-spacing-300) var(--spacing-spacing-500);
+    border-radius: var(--number-scale-round);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--Font-Secondary);
+    transition: all 200ms ease;
+    background-color: var(--surface-primary-default);
+    color: var(--text-primary-on-colour);
+}
+
+.demographics-continue-btn:hover:not(:disabled) {
+    background-color: var(--surface-primary-default-hover);
+}
+
+.demographics-continue-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.demographics-continue-btn:disabled {
+    background-color: #d1d5db;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    cursor: not-allowed;
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+}
+
+.demographics-privacy-notice {
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-caption);
+    text-align: center;
+    line-height: var(--number-scale-500);
+    margin: 0;
+    padding: 0 var(--spacing-spacing-200);
+    font-family: var(--Font-Secondary);
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+@media (max-width: 375px) {
+    .demographics-container {
+        gap: var(--spacing-spacing-500);
+        padding-top: var(--spacing-spacing-300);
+    }
+
+    .demographics-title {
+        font-size: var(--Font-Headings-H6-text-size);
+        line-height: var(--size-font-headings-h6-line-height);
+    }
+}
