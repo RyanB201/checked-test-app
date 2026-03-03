@@ -39,6 +39,9 @@ function Questionnaire({ onBack, onSubmit }) {
     // Check if all questions are answered
     const allAnswered = Object.values(answers).every(answer => answer !== null)
 
+    // Dynamic completion percentage: 70% base, increases to 80% when all answered
+    const completionPercent = allAnswered ? 80 : 70
+
     const handleSubmit = () => {
         if (allAnswered && onSubmit) {
             onSubmit(answers)
@@ -51,12 +54,12 @@ function Questionnaire({ onBack, onSubmit }) {
                 {/* Progress Section */}
                 <div className="questionnaire-progress-section">
                     <div className="questionnaire-progress-header">
-                        <span className="questionnaire-progress-text">Completion: 70%</span>
+                        <span className="questionnaire-progress-text">Completion: {completionPercent}%</span>
                     </div>
                     <div className="questionnaire-progress-bar">
                         <div
                             className="questionnaire-progress-bar-fill"
-                            style={{ width: '70%' }}
+                            style={{ width: `${completionPercent}%` }}
                         ></div>
                     </div>
                 </div>
@@ -89,9 +92,10 @@ function Questionnaire({ onBack, onSubmit }) {
                                 <div className="question-label-row">
                                     <span className="question-required">*</span>
                                     <span className="question-text">{question.text}</span>
-                                    <svg className="question-help-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
-                                        <path d="M8 11V8M8 5H8.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <svg className="question-help-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" />
+                                        <path d="M7.5 7.75C7.5 6.37 8.62 5.25 10 5.25C11.38 5.25 12.5 6.37 12.5 7.75C12.5 8.85 11.78 9.78 10.78 10.12C10.34 10.27 10 10.6 10 11.07V11.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <circle cx="10" cy="14" r="0.75" fill="currentColor" />
                                     </svg>
                                 </div>
                                 <div className="radio-options">

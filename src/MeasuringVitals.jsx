@@ -29,63 +29,53 @@ function MeasuringVitals({ onBack, onMeasurementComplete }) {
             if (newProgress < 100) {
                 requestAnimationFrame(animateProgress)
             } else {
-                // Measurement complete - show results
                 setIsComplete(true)
             }
         }
 
         const animationFrame = requestAnimationFrame(animateProgress)
-
         return () => cancelAnimationFrame(animationFrame)
     }, [])
 
     return (
-        <div className="measuring-vitals-page">
-            <div className="measuring-vitals-container">
-                {/* Progress Section */}
-                <div className="measuring-progress-section">
-                    <div className="measuring-progress-header">
-                        <span className="measuring-progress-text">Completion: {isComplete ? '50%' : '40%'}</span>
-                    </div>
-                    <div className="measuring-progress-bar">
+        <div className="mv-page">
+            <div className="mv-container">
+                {/* Progress Bar */}
+                <div className="mv-progress-section">
+                    <span className="mv-progress-text">
+                        Completion: {isComplete ? '50%' : '40%'}
+                    </span>
+                    <div className="mv-progress-bar">
                         <div
-                            className="measuring-progress-bar-fill"
+                            className="mv-progress-bar-fill"
                             style={{ width: isComplete ? '50%' : '40%' }}
-                        ></div>
+                        />
                     </div>
                 </div>
 
-                {/* Navigation Bar */}
-                <div className="measuring-nav">
-                    <button className="measuring-back-button" onClick={onBack}>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.8334 10H4.16675" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M10.0001 15.8334L4.16675 10.0001L10.0001 4.16675" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Back</span>
-                    </button>
-                </div>
+                {/* Back Button */}
+                <button className="mv-back-btn" onClick={onBack}>
+                    <span className="material-symbols-outlined mv-back-arrow">arrow_back</span>
+                    <span className="mv-back-text">Back</span>
+                </button>
 
                 {/* Main Content */}
-                <div className="measuring-vitals-content">
-                    {/* Title */}
-                    <h1 className="measuring-vitals-title">Measurement in Progress...</h1>
+                <div className="mv-main-content">
+                    <h1 className="mv-title">Measurement in Progress...</h1>
 
                     {/* Measurement Card */}
-                    <div className="measurement-card">
+                    <div className="mv-card">
                         {/* Circular Progress */}
-                        <div className="circular-progress-container">
-                            <svg className="circular-progress-svg" viewBox="0 0 120 120">
-                                {/* Background circle */}
+                        <div className="mv-circle-container">
+                            <svg className="mv-circle-svg" viewBox="0 0 120 120">
                                 <circle
-                                    className="circular-progress-bg"
+                                    className="mv-circle-bg"
                                     cx="60"
                                     cy="60"
                                     r={radius}
                                 />
-                                {/* Progress arc */}
                                 <circle
-                                    className="circular-progress-fg"
+                                    className="mv-circle-fg"
                                     cx="60"
                                     cy="60"
                                     r={radius}
@@ -93,42 +83,43 @@ function MeasuringVitals({ onBack, onMeasurementComplete }) {
                                     strokeDashoffset={strokeDashoffset}
                                 />
                             </svg>
-                            <span className="circular-progress-text">{progress}%</span>
+                            <span className="mv-circle-text">{progress}%</span>
                         </div>
 
                         {/* Status Text */}
-                        <p className={`measuring-status-text ${isComplete ? 'status-complete' : ''}`}>
+                        <p className={`mv-status-text ${isComplete ? 'mv-status-complete' : ''}`}>
                             {isComplete ? 'Measurement Complete' : <>Measuring blood<br />pressure...</>}
                         </p>
 
                         {/* Data Fields */}
-                        <div className="data-fields-container">
-                            <div className="data-field-row">
-                                <span className="data-field-label">Systolic</span>
-                                <span className={`data-field-value ${isComplete ? 'value-complete' : ''}`}>
+                        <div className="mv-data-fields">
+                            <div className="mv-data-row">
+                                <span className="mv-data-label">Systolic</span>
+                                <span className="mv-data-value">
                                     {isComplete ? `${systolicValue} mmHg` : '— mmHg'}
                                 </span>
                             </div>
-                            <div className="data-field-row">
-                                <span className="data-field-label">Diastolic</span>
-                                <span className={`data-field-value ${isComplete ? 'value-complete' : ''}`}>
+                            <div className="mv-data-row">
+                                <span className="mv-data-label">Diastolic</span>
+                                <span className="mv-data-value">
                                     {isComplete ? `${diastolicValue} mmHg` : '— mmHg'}
                                 </span>
                             </div>
                         </div>
-
-                        {/* Continue Button - shown when complete */}
-                        {isComplete && (
-                            <button className="measuring-continue-button" onClick={onMeasurementComplete}>
-                                View Results
-                            </button>
-                        )}
                     </div>
                 </div>
+
+                {/* View Results Button — outside card, shown when complete */}
+                {isComplete && (
+                    <div className="mv-bottom-actions">
+                        <button className="mv-results-btn" onClick={onMeasurementComplete}>
+                            View Results
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )
 }
 
 export default MeasuringVitals
-

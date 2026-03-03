@@ -46,8 +46,7 @@ function DemographicsForm({ onBack, onContinue }) {
             !isNaN(formData.age) &&
             !isNaN(formData.weight) &&
             Number(formData.age) > 0 &&
-            Number(formData.weight) > 0 &&
-            formData.gender !== ''
+            Number(formData.weight) > 0
         )
     }
 
@@ -160,7 +159,7 @@ function DemographicsForm({ onBack, onContinue }) {
 
                     {/* Gender Selection */}
                     <div className="demographics-gender-section">
-                        <span className="demographics-gender-label">Gender <span className="required-asterisk">*</span></span>
+                        <span className="demographics-gender-label">Gender</span>
                         <div className="demographics-gender-options">
                             <div
                                 className={`gender-card ${formData.gender === 'male' ? 'selected' : ''}`}

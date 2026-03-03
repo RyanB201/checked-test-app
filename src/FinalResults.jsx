@@ -68,10 +68,10 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
             case 'normal':
             default:
                 return {
-                    icon: 'check',
+                    icon: 'info',
                     iconClass: 'guidance-icon-normal',
                     title: 'Health Guidance',
-                    text: 'Great job! Your blood pressure is within a healthy range and you reported no concerning symptoms. Keep up the good work with regular monitoring and maintaining healthy habits.',
+                    text: "Great job! Your blood pressure is normal and you're managing your health well. Keep up the good work with regular monitoring and maintaining healthy habits.",
                     cardClass: 'guidance-card-normal'
                 };
         }
@@ -83,23 +83,16 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
     const renderGuidanceIcon = () => {
         if (guidance.icon === 'warning') {
             return (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     <line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             );
-        } else if (guidance.icon === 'check') {
-            return (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-                </svg>
-            );
         }
-        // Default info icon
+        // Info icon (for both normal and urgent)
         return (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                 <path d="M12 16V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 <circle cx="12" cy="8" r="1" fill="currentColor" />
@@ -135,13 +128,15 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                         ></div>
                     </div>
                 </div>
-                <button className="final-results-back-button" onClick={onBack}>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15.8334 10H4.16675" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M10.0001 15.8334L4.16675 10.0001L10.0001 4.16675" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>Back</span>
-                </button>
+                <div className="final-results-nav">
+                    <button className="final-results-back-button" onClick={onBack}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.8334 10H4.16675" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M10.0001 15.8334L4.16675 10.0001L10.0001 4.16675" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Back</span>
+                    </button>
+                </div>
             </header>
 
             {/* Scrollable Main Content */}
@@ -154,7 +149,7 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                     <div className="status-card-content">
                         <div className="status-card-left">
                             <div className="status-check-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
                                 </svg>
@@ -172,7 +167,7 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                     <div className="metrics-card-header">
                         <div className="metrics-card-title-group">
                             <h2 className="metrics-card-title">Blood Pressure Metrics</h2>
-                            <span className="metrics-card-subtitle">Measured in mmHg</span>
+                            <span className="metrics-card-subtitle">Measure in mmHG</span>
                         </div>
                         <span className="metrics-card-value">{systolic}/{diastolic}</span>
                     </div>
@@ -187,7 +182,7 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                         </div>
                         <div className="metrics-range-bar">
                             <div className="metrics-range-track">
-                                <div className="metrics-range-highlight" style={{ left: '30%', width: '40%' }}></div>
+                                <div className="metrics-range-highlight" style={{ left: '24.8%', width: '25.4%' }}></div>
                             </div>
                             <div
                                 className="metrics-range-marker"
@@ -209,7 +204,7 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                         </div>
                         <div className="metrics-range-bar">
                             <div className="metrics-range-track">
-                                <div className="metrics-range-highlight" style={{ left: '25%', width: '35%' }}></div>
+                                <div className="metrics-range-highlight" style={{ left: '24.8%', width: '17.8%' }}></div>
                             </div>
                             <div
                                 className="metrics-range-marker"
@@ -258,9 +253,11 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                         {guidance.text}
                     </p>
                     <div className="guidance-disclaimer">
-                        <p className="guidance-disclaimer-text">
-                            <strong>Medical Disclaimer:</strong> This is not a medical diagnosis from a licensed provider. If you're noticing worsening symptoms, please consult with your family doctor or head to your nearest emergency care hospital.
-                        </p>
+                        <div className="guidance-disclaimer-inner">
+                            <p className="guidance-disclaimer-text">
+                                <strong>Medical Disclaimer: </strong>This is not a medical diagnosis from a licensed provider. If you're noticing worsening symptoms, please consult with your family doctor or head to your nearest emergency hospital
+                            </p>
+                        </div>
                     </div>
                 </div>
             </main>

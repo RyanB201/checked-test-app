@@ -1,10 +1,12 @@
+/* ==========================================
+   DEMOGRAPHICS FORM PAGE
+   ========================================== */
 .demographics-page {
     min-height: 100vh;
     background-color: var(--color-foundations-white);
     display: flex;
-    align-items: flex-start;
     justify-content: center;
-    padding: var(--spacing-spacing-form-horizontal-spacing);
+    padding: 0 var(--spacing-spacing-600);
     font-family: var(--Font-Secondary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -15,8 +17,7 @@
     max-width: var(--size-frame-width);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-600);
-    padding-top: var(--spacing-spacing-400);
+    padding-top: var(--spacing-spacing-md);
 }
 
 /* ==========================================
@@ -27,21 +28,22 @@
     gap: 6px;
     width: 100%;
     border-radius: var(--Border-Radius-300);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .demographics-progress-segment {
     flex: 1;
     height: 6px;
     min-width: 0;
+    background-color: var(--color-neutral-200);
 }
 
 .demographics-progress-segment:first-child {
-    border-radius: var(--Border-Radius-100) 0 0 var(--Border-Radius-100);
+    border-radius: 4px 0 0 4px;
 }
 
 .demographics-progress-segment:last-child {
-    border-radius: 0 var(--Border-Radius-100) var(--Border-Radius-100) 0;
+    border-radius: 0 4px 4px 0;
 }
 
 .demographics-progress-segment.filled {
@@ -49,7 +51,7 @@
 }
 
 .demographics-progress-segment.unfilled {
-    background-color: var(--Primary-50);
+    background-color: var(--Primary-200);
 }
 
 /* ==========================================
@@ -60,26 +62,28 @@
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-spacing-200);
+    margin-top: var(--spacing-spacing-800);
 }
 
 .demographics-title {
-    font-size: var(--Font-Headings-H5-text-size);
+    font-family: var(--Font-Primary);
+    font-size: var(--number-scale-600);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-heading);
-    line-height: var(--size-font-headings-h5-line-height);
+    line-height: var(--number-scale-700);
     margin: 0;
     text-align: center;
-    font-family: var(--Font-Primary);
+    letter-spacing: 0;
 }
 
 .demographics-subtitle {
-    font-size: var(--Font-Copy-body-text-size);
+    font-family: var(--Font-Secondary);
+    font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-body);
-    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
+    line-height: var(--number-scale-500);
     margin: 0;
     text-align: center;
-    font-family: var(--Font-Secondary);
 }
 
 /* ==========================================
@@ -101,34 +105,36 @@
 }
 
 .demographics-label {
+    font-family: var(--Font-Secondary);
     font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-regular);
-    color: var(--text-default-body);
+    color: var(--text-default-heading);
     line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
-    font-family: var(--Font-Secondary);
     display: flex;
     align-items: center;
-    gap: var(--spacing-spacing-100);
+    gap: 2px;
 }
 
 .demographics-label .required-asterisk {
-    color: var(--icon-error-default);
+    color: var(--Error-600);
     font-weight: var(--font-weight-bold);
 }
 
 .demographics-input {
     width: 100%;
-    padding: var(--spacing-spacing-200) var(--spacing-spacing-300);
-    border: var(--Border-Width-xs) solid var(--border-default);
-    border-radius: var(--Border-Radius-100);
+    height: 44px;
+    padding: 0 var(--spacing-spacing-300);
+    border: 1px solid var(--border-default);
+    border-radius: var(--Border-Radius-round);
+    font-family: var(--Font-Secondary);
     font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-body);
-    background-color: var(--surface-default);
-    font-family: var(--Font-Secondary);
+    background-color: var(--color-foundations-white);
     line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
     transition: all 200ms ease;
     outline: none;
+    box-sizing: border-box;
 }
 
 .demographics-input::placeholder {
@@ -144,10 +150,10 @@
 }
 
 .demographics-error {
-    font-size: var(--size-font-copy-body-sm-text-size);
-    color: var(--text-error-default);
     font-family: var(--Font-Secondary);
-    margin-top: calc(var(--spacing-spacing-100) * -1);
+    font-size: var(--Font-Copy-caption-text-size);
+    color: var(--text-error-default);
+    margin-top: -4px;
 }
 
 /* ==========================================
@@ -156,7 +162,7 @@
 .demographics-weight-row {
     display: flex;
     gap: var(--spacing-spacing-200);
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
 }
 
@@ -173,9 +179,8 @@
 .unit-toggle {
     display: flex;
     align-items: center;
-    background-color: var(--surface-default);
-    border: var(--Border-Width-xs) solid var(--border-default);
-    border-radius: var(--Border-Radius-100);
+    background-color: var(--color-foundations-white);
+    border-radius: var(--Border-Radius-round);
     padding: 4px;
     height: 40px;
     flex-shrink: 0;
@@ -188,24 +193,24 @@
     width: 44px;
     height: 32px;
     border: none;
-    border-radius: var(--number-scale-round);
+    border-radius: var(--Border-Radius-round);
     background: none;
     cursor: pointer;
     font-family: var(--Font-Secondary);
     font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-semibold);
     color: var(--text-default-body);
-    line-height: var(--size-font-copy-body-sm-line-height);
+    line-height: 1;
     transition: all 200ms ease;
 }
 
 .unit-toggle-btn.active {
     background-color: var(--surface-primary-default);
-    color: var(--color-foundations-white);
+    color: var(--text-primary-on-colour);
 }
 
 .unit-toggle-btn:not(.active):hover {
-    background-color: var(--surface-page-secondary);
+    background-color: var(--color-neutral-200);
 }
 
 /* ==========================================
@@ -219,16 +224,16 @@
 }
 
 .demographics-gender-label {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-default-body);
-    line-height: 22.5px;
     font-family: var(--Font-Secondary);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
 }
 
 .demographics-gender-label .required-asterisk {
-    color: #f43f5e;
-    font-weight: 500;
+    color: var(--Error-600);
+    font-weight: var(--font-weight-bold);
 }
 
 .demographics-gender-options {
@@ -241,13 +246,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 21px 25px;
-    background-color: var(--surface-default);
-    border: 1px solid var(--surface-default);
+    gap: 2px;
+    padding: 16px 20px;
+    background-color: var(--color-neutral-50);
+    border: 1px solid var(--color-neutral-50);
     border-radius: var(--Border-Radius-300);
     cursor: pointer;
     transition: all 200ms ease;
-    width: 106px;
+    flex: 1;
+    min-width: 0;
 }
 
 .gender-card:hover {
@@ -262,7 +269,7 @@
 .gender-card-icon {
     font-size: 24px;
     line-height: 24px;
-    color: var(--icon-primary-default);
+    color: var(--Primary-600);
     font-family: 'Material Symbols Outlined';
     font-weight: 100;
     font-style: normal;
@@ -273,13 +280,12 @@
 }
 
 .gender-card-label {
-    font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: 500;
-    color: var(--icon-primary-default);
     font-family: var(--Font-Secondary);
-    line-height: var(--spacing-spacing-500);
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--number-scale-500);
     text-align: center;
-    margin-top: 2px;
 }
 
 /* ==========================================
@@ -295,9 +301,10 @@
 
 .demographics-continue-btn {
     width: 100%;
-    min-height: 48px;
+    height: 48px;
     padding: var(--spacing-spacing-300) var(--spacing-spacing-500);
-    border-radius: var(--number-scale-round);
+    border-radius: var(--Border-Radius-round);
+    font-family: var(--Font-Secondary);
     font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-semibold);
     border: none;
@@ -305,10 +312,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--Font-Secondary);
     transition: all 200ms ease;
     background-color: var(--surface-primary-default);
     color: var(--text-primary-on-colour);
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
 }
 
 .demographics-continue-btn:hover:not(:disabled) {
@@ -320,14 +327,14 @@
 }
 
 .demographics-continue-btn:disabled {
-    background-color: #d1d5db;
-    border: 1px solid #d1d5db;
-    color: #374151;
+    background-color: var(--color-neutral-200);
+    color: var(--text-default-body);
     cursor: not-allowed;
-    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+    box-shadow: none;
 }
 
 .demographics-privacy-notice {
+    font-family: var(--Font-Secondary);
     font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-caption);
@@ -335,7 +342,6 @@
     line-height: var(--number-scale-500);
     margin: 0;
     padding: 0 var(--spacing-spacing-200);
-    font-family: var(--Font-Secondary);
 }
 
 /* ==========================================
@@ -343,12 +349,23 @@
    ========================================== */
 @media (max-width: 375px) {
     .demographics-container {
-        gap: var(--spacing-spacing-500);
-        padding-top: var(--spacing-spacing-300);
+        padding-top: var(--spacing-spacing-sm);
     }
 
     .demographics-title {
-        font-size: var(--Font-Headings-H6-text-size);
-        line-height: var(--size-font-headings-h6-line-height);
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .demographics-form {
+        margin-top: var(--spacing-spacing-800);
+    }
+}
+
+/* Desktop & Tablet Responsive */
+@media (min-width: 768px) {
+    .demographics-container {
+        max-width: 440px;
+        margin: 0 auto;
     }
 }

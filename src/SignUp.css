@@ -1,11 +1,11 @@
 .signup-page {
   min-height: 100vh;
-  background-color: var(--color-foundations-white);
+  background-color: var(--color-neutral-50);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: var(--spacing-spacing-form-horizontal-spacing);
-  font-family: var(--Font-Secondary);
+  padding: 18px;
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat as default body font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,11 +13,11 @@
 
 .signup-container {
   width: 100%;
-  max-width: var(--size-frame-width);
+  /* Keep width 100% on mobile, apply max-width constraint for desktop in media query */
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-spacing-600);
-  padding-top: var(--spacing-spacing-400);
+  gap: 24px;
+  padding-top: 16px;
 }
 
 /* Progress Section */
@@ -25,7 +25,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-spacing-200);
+  gap: 8px;
 }
 
 .progress-header {
@@ -36,23 +36,24 @@
 
 .progress-text {
   font-size: var(--size-font-copy-body-sm-text-size);
-  font-weight: var(--font-weight-regular);
-  color: var(--text-default-body);
-  font-family: var(--Font-Secondary);
+  font-weight: 400;
+  color: var(--color-neutral-900);
+  line-height: 1.14;
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat for body text */
 }
 
 .progress-bar {
   width: 100%;
-  height: var(--number-scale-100);
-  background-color: var(--surface-disabled-disabled);
+  height: 4px;
+  background-color: var(--color-neutral-300);
   border-radius: var(--Border-Radius-round);
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background-color: var(--surface-primary-default);
+  background-color: var(--Primary-600);
   transition: width 300ms ease;
   border-radius: var(--Border-Radius-round);
 }
@@ -68,25 +69,25 @@
 .nav-button {
   display: flex;
   align-items: center;
-  gap: var(--spacing-spacing-100);
+  gap: 4px;
   background: none;
   border: none;
-  color: var(--text-primary-default);
+  color: var(--Primary-600);
   font-size: var(--Font-Copy-body-text-size);
-  font-weight: var(--font-weight-medium);
-  font-family: var(--Font-Secondary);
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat for body text */
   cursor: pointer;
-  padding: var(--spacing-spacing-200);
+  padding: 8px;
   transition: color 200ms ease;
 }
 
 .nav-button:hover {
-  color: var(--text-primary-default-hover);
+  color: var(--Primary-600);
 }
 
 .nav-button-close {
-  padding: var(--spacing-spacing-200);
+  padding: 8px;
 }
 
 .nav-button svg {
@@ -96,13 +97,13 @@
 
 /* Title */
 .signup-title {
-  font-size: var(--Font-Headings-H5-text-size);
-  font-weight: var(--font-weight-regular);
-  color: var(--text-default-heading);
-  line-height: var(--size-font-headings-h5-line-height);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-neutral-900);
+  line-height: 1.2;
   margin: 0;
   text-align: center;
-  font-family: var(--Font-Primary);
+  font-family: 'Sora', sans-serif;
   /* Sora for headings */
 }
 
@@ -110,86 +111,89 @@
 .signup-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-spacing-500);
+  gap: 20px;
   width: 100%;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-spacing-200);
+  gap: 8px;
   width: 100%;
 }
 
 .form-label {
   font-size: var(--Font-Copy-body-text-size);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-default-body);
-  font-family: var(--Font-Secondary);
+  font-weight: 500;
+  color: var(--color-neutral-900);
+  line-height: 1.25;
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat for body text */
 }
 
 .form-input {
   width: 100%;
   height: 44px;
-  padding: 0 var(--spacing-spacing-400);
-  border: var(--Border-Width-md) solid var(--border-default);
+  padding: 0 16px;
+  border: 4px solid var(--color-neutral-100);
   border-radius: var(--Border-Radius-200);
   font-size: var(--Font-Copy-body-text-size);
-  font-weight: var(--font-weight-regular);
-  color: var(--text-default-body);
-  background-color: var(--color-foundations-white);
-  font-family: var(--Font-Secondary);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-neutral-900);
+  background-color: var(--color-neutral-50);
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat for body text */
   transition: all 200ms ease;
   outline: none;
 }
 
 .form-input::placeholder {
-  color: var(--text-default-placeholder);
+  color: var(--color-neutral-500);
 }
 
 .form-input:focus {
-  border-color: var(--border-primary-focus);
-  background-color: var(--color-foundations-white);
+  border-color: var(--Primary-500);
+  background-color: var(--color-neutral-50);
 }
 
 .form-input-error {
-  border-color: var(--border-error-default);
+  border-color: var(--Error-600);
 }
 
 .form-input-error:focus {
-  border-color: var(--border-error-focus);
+  border-color: var(--Error-600);
 }
 
 .form-error {
   font-size: var(--size-font-copy-body-sm-text-size);
-  color: var(--text-error-default);
-  font-family: var(--Font-Secondary);
+  color: var(--Error-600);
+  line-height: 1.14;
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat for body text */
-  margin-top: calc(var(--spacing-spacing-100) * -1);
+  margin-top: calc(4px * -1);
 }
 
 /* Auth error banner */
 .auth-error-banner {
-  background-color: var(--Error-50, #FEF2F2);
-  border: 1px solid var(--Error-200, #FECACA);
-  border-radius: var(--Border-Radius-200, 8px);
-  padding: var(--spacing-spacing-300) var(--spacing-spacing-400);
-  margin-top: var(--spacing-spacing-200);
+  background-color: var(--Error-100);
+  border: 1px solid var(--Error-600);
+  border-radius: var(--Border-Radius-200);
+  padding: 12px 16px;
+  margin-top: 8px;
 }
 
 .auth-error-banner p {
   font-size: var(--size-font-copy-body-sm-text-size);
-  color: var(--Error-600, #DC2626);
-  font-family: var(--Font-Secondary);
+  color: var(--Error-600);
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.14;
 }
 
 .auth-error-link {
-  color: var(--surface-primary-default);
-  font-weight: var(--font-weight-semibold);
+  color: var(--Primary-600);
+  font-weight: 600;
   text-decoration: underline;
 }
 
@@ -198,76 +202,86 @@
 }
 
 .btn-continue {
-  margin-top: var(--spacing-spacing-200);
+  margin-top: 8px;
 }
 
 .btn-disabled {
-  background-color: var(--surface-disabled-disabled) !important;
-  color: var(--text-disabled-default) !important;
+  background-color: var(--color-neutral-300) !important;
+  color: var(--color-neutral-500) !important;
   cursor: not-allowed !important;
   opacity: 0.6;
 }
 
 .btn-disabled:hover {
-  background-color: var(--surface-disabled-disabled) !important;
+  background-color: var(--color-neutral-300) !important;
   transform: none !important;
 }
 
 /* Legal Text */
 .legal-text {
-  font-size: var(--size-font-copy-body-sm-text-size);
-  color: var(--text-default-body);
+  font-size: 12px;
+  color: var(--color-neutral-900);
   text-align: center;
-  line-height: var(--size-font-copy-body-sm-line-height);
+  line-height: 1.14;
   margin: 0;
-  padding: 0 var(--spacing-spacing-400);
-  font-family: var(--Font-Secondary);
+  padding: 0 16px;
+  font-family: 'Montserrat', sans-serif;
   /* Montserrat for body text */
 }
 
 .legal-link {
-  color: var(--text-primary-default);
+  color: var(--Primary-600);
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
   transition: color 200ms ease;
 }
 
 .legal-link:hover {
-  color: var(--text-primary-default-hover);
+  color: var(--Primary-600);
   text-decoration: underline;
 }
 
 /* Login Link */
 .signup-page .login-link-text {
-  font-size: var(--Font-Copy-caption-text-size);
-  color: var(--text-default-caption);
+  font-size: var(--Font-Copy-body-text-size);
+  color: var(--color-neutral-500);
   text-align: center;
-  line-height: var(--size-font-copy-caption-line-height);
+  line-height: 1.25;
   margin: 0;
-  font-family: var(--Font-Secondary);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .signup-page .login-link {
-  color: var(--Primary-500);
+  font-size: var(--Font-Copy-body-text-size);
+  line-height: 1.25;
+  color: var(--Primary-600);
   text-decoration: none;
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
   transition: color 200ms ease;
 }
 
 .signup-page .login-link:hover {
-  color: var(--text-primary-default-hover);
+  color: var(--Primary-600);
   text-decoration: underline;
 }
 
 /* Mobile Responsive */
 @media (max-width: 375px) {
   .signup-container {
-    gap: var(--spacing-spacing-500);
-    padding-top: var(--spacing-spacing-300);
+    gap: 20px;
+    padding-top: 12px;
   }
 
   .signup-title {
     font-size: var(--Font-Headings-H4-text-size);
-    line-height: var(--size-font-headings-h4-line-height);
+    line-height: 1.14;
+  }
+}
+
+/* Desktop & Tablet Responsive */
+@media (min-width: 768px) {
+  .signup-container {
+    max-width: 440px;
+    margin: 0 auto;
   }
 }

@@ -66,10 +66,7 @@ function DeviceConnection({ onConnect, onScanDevice }) {
                     </button>
                 </div>
 
-                {/* Privacy Notice */}
-                <p className="dc-privacy-notice">
-                    Your health data is encrypted and secure. We never share your personal information without your consent.
-                </p>
+
             </div>
         </div>
     )

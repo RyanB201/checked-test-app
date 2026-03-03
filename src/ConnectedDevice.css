@@ -1,185 +1,181 @@
-.connected-device-page {
+/* ==========================================
+   CONNECTED DEVICE PAGE
+   ========================================== */
+.ctd-page {
     min-height: 100vh;
     background-color: var(--color-foundations-white);
     display: flex;
-    align-items: flex-start;
     justify-content: center;
-    padding: var(--spacing-spacing-form-horizontal-spacing);
+    padding: 0 var(--spacing-spacing-600);
     font-family: var(--Font-Secondary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.connected-device-container {
+.ctd-container {
     width: 100%;
     max-width: var(--size-frame-width);
     display: flex;
     flex-direction: column;
-    padding-top: var(--spacing-spacing-400);
-    min-height: 100vh;
-    position: relative;
+    padding-top: var(--spacing-spacing-lg);
 }
 
 /* ==========================================
    PROGRESS BAR
    ========================================== */
-.cdd-progress-section {
-    width: 100%;
+.ctd-progress-section {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-spacing-300);
+    margin-bottom: var(--spacing-spacing-400);
 }
 
-.cdd-progress-text {
+.ctd-progress-text {
+    font-family: var(--Font-Secondary);
     font-size: var(--size-font-copy-body-sm-text-size);
     font-weight: var(--font-weight-regular);
     color: var(--text-default-body);
-    font-family: var(--Font-Secondary);
     line-height: var(--number-scale-500);
 }
 
-.cdd-progress-bar {
+.ctd-progress-bar {
     width: 100%;
     height: 4px;
-    background-color: var(--Primary-100);
+    background-color: var(--Primary-200);
     border-radius: var(--Border-Radius-round);
     overflow: hidden;
 }
 
-.cdd-progress-bar-fill {
+.ctd-progress-bar-fill {
     height: 100%;
     background-color: var(--surface-primary-default);
-    transition: width 300ms ease;
+    transition: width 500ms ease;
     border-radius: var(--Border-Radius-round);
 }
 
 /* ==========================================
    BACK BUTTON
    ========================================== */
-.cdd-back-btn {
+.ctd-back-btn {
     display: flex;
     align-items: center;
-    gap: var(--spacing-spacing-200);
+    gap: 4px;
     background: none;
     border: none;
-    cursor: pointer;
-    padding: var(--spacing-spacing-200) var(--spacing-spacing-300);
-    border-radius: 999px;
-    margin-top: var(--spacing-spacing-200);
-    align-self: flex-start;
-}
-
-.cdd-back-arrow {
-    font-size: 20px;
-    color: var(--surface-primary-default);
-}
-
-.cdd-back-text {
-    font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
-    color: var(--surface-primary-default);
+    color: var(--Primary-600);
     font-family: var(--Font-Secondary);
-    line-height: 1;
-}
-
-/* ==========================================
-   MAIN CONTENT — vertically centered
-   ========================================== */
-.cdd-main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-spacing-600);
-}
-
-.cdd-title {
-    font-size: var(--number-scale-500);
+    font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-regular);
-    color: var(--text-default-heading);
-    line-height: var(--number-scale-600);
-    margin: 0;
-    text-align: center;
-    font-family: var(--Font-Primary);
+    cursor: pointer;
+    padding: var(--spacing-spacing-200) 0;
+    transition: color 200ms ease;
+}
+
+.ctd-back-btn:hover {
+    color: var(--Primary-800);
+}
+
+.ctd-back-arrow {
+    font-size: 20px;
+}
+
+.ctd-back-text {
+    line-height: var(--number-scale-500);
 }
 
 /* ==========================================
-   STATUS CONTAINER (icon + text group)
+   MAIN CONTENT
    ========================================== */
-.cdd-status-container {
+.ctd-main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-spacing-400);
-    width: 100%;
-    padding: 0 var(--spacing-spacing-300);
-    padding-bottom: var(--spacing-spacing-500);
-    background-color: var(--color-foundations-white);
-    border-radius: var(--border-width-lg);
+    margin-top: var(--spacing-spacing-xl);
+    flex: 1;
 }
 
-/* Featured icon — green success circle */
-.cdd-featured-icon {
+.ctd-title {
+    font-family: var(--Font-Primary);
+    font-size: var(--number-scale-600);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-heading);
+    line-height: var(--number-scale-700);
+    margin: 0;
+    text-align: center;
+    letter-spacing: 0;
+}
+
+/* ==========================================
+   SUCCESS ICON
+   ========================================== */
+.ctd-success-icon {
     width: 56px;
     height: 56px;
-    background-color: var(--Success-100);
-    border-radius: 28px;
+    border-radius: 50%;
+    background-color: #dcfce7;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-top: var(--spacing-spacing-400);
 }
 
-.cdd-check-icon {
-    width: 28px;
-    height: 28px;
+/* ==========================================
+   STATUS TEXT
+   ========================================== */
+.ctd-status-text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-spacing-200);
 }
 
-.cdd-status-text {
+.ctd-status-label {
+    font-family: var(--Font-Secondary);
     font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-semibold);
-    color: var(--text-default-body);
-    line-height: var(--size-font-copy-body-line-height);
-    text-align: center;
-    margin: 0;
-    font-family: var(--Font-Secondary);
-}
-
-.cdd-subtitle {
-    font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-regular);
-    color: var(--text-default-body);
+    color: var(--text-default-heading);
     line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
     text-align: center;
     margin: 0;
+}
+
+.ctd-status-subtitle {
     font-family: var(--Font-Secondary);
-    max-width: 327px;
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-default-body);
+    line-height: var(--number-scale-500);
+    text-align: center;
+    margin: 0;
+    max-width: 300px;
 }
 
 /* ==========================================
    BOTTOM ACTIONS
    ========================================== */
-.cdd-bottom-actions {
+.ctd-bottom-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-spacing-400);
-    padding-bottom: var(--spacing-spacing-400);
+    margin-top: auto;
+    padding-bottom: var(--spacing-spacing-xl);
+    width: 100%;
 }
 
-.cdd-continue-btn {
+.ctd-continue-btn {
     width: 100%;
-    min-height: 48px;
+    height: 48px;
     padding: var(--spacing-spacing-300) var(--spacing-spacing-500);
-    border-radius: 999px;
+    border-radius: var(--Border-Radius-round);
     background-color: var(--surface-primary-default);
     border: 1px solid var(--surface-primary-default);
-    color: var(--color-foundations-white);
+    color: var(--text-primary-on-colour);
     font-family: var(--Font-Secondary);
     font-size: var(--Font-Copy-body-text-size);
     font-weight: var(--font-weight-semibold);
-    line-height: 20px;
+    line-height: var(--number-scale-500);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -188,41 +184,31 @@
     box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
 }
 
-.cdd-continue-btn:hover {
+.ctd-continue-btn:hover {
     background-color: var(--surface-primary-default-hover);
+    border-color: var(--surface-primary-default-hover);
 }
 
-.cdd-continue-btn:active {
+.ctd-continue-btn:active {
     transform: scale(0.98);
 }
 
-.cdd-bottom-notice {
-    font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
-    color: var(--text-default-body);
-    text-align: center;
-    line-height: var(--number-scale-500);
-    margin: 0;
-    font-family: var(--Font-Secondary);
-    max-width: 318px;
-}
-
 /* ==========================================
-   MOBILE RESPONSIVE
+   RESPONSIVE
    ========================================== */
 @media (max-width: 375px) {
-    .cdd-title {
-        font-size: 18px;
-        line-height: 22px;
+    .ctd-container {
+        padding-top: var(--spacing-spacing-md);
     }
 
-    .cdd-featured-icon {
-        width: 48px;
-        height: 48px;
+    .ctd-main-content {
+        margin-top: var(--spacing-spacing-lg);
     }
+}
 
-    .cdd-check-icon {
-        width: 24px;
-        height: 24px;
+@media (min-width: 768px) {
+    .ctd-container {
+        max-width: 440px;
+        margin: 0 auto;
     }
 }

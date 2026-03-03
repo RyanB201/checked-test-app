@@ -4,7 +4,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: var(--spacing-spacing-form-horizontal-spacing);
+    padding: 18px;
     font-family: var(--Font-Secondary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -12,12 +12,10 @@
 
 .questionnaire-container {
     width: 100%;
-    max-width: var(--size-frame-width);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-400);
-    padding-top: var(--spacing-spacing-400);
-    min-height: calc(100vh - var(--spacing-spacing-form-horizontal-spacing) * 2);
+    gap: 16px;
+    padding-top: 16px;
 }
 
 /* Progress Section */
@@ -25,8 +23,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-200);
-    margin-bottom: var(--spacing-spacing-200);
+    gap: 12px;
+    margin-bottom: 8px;
 }
 
 .questionnaire-progress-header {
@@ -37,22 +35,23 @@
 
 .questionnaire-progress-text {
     font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
     color: var(--text-default-body);
     font-family: var(--Font-Secondary);
+    line-height: var(--number-scale-500);
 }
 
 .questionnaire-progress-bar {
     width: 100%;
-    height: var(--number-scale-100);
-    background-color: var(--Primary-100);
+    height: 4px;
+    background-color: var(--Primary-50);
     border-radius: var(--Border-Radius-round);
     overflow: hidden;
 }
 
 .questionnaire-progress-bar-fill {
     height: 100%;
-    background-color: var(--surface-primary-default);
+    background-color: var(--Primary-600);
     transition: width 300ms ease;
     border-radius: var(--Border-Radius-round);
 }
@@ -63,26 +62,28 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    margin-bottom: var(--spacing-spacing-200);
+    margin-bottom: 8px;
 }
 
 .questionnaire-back-button {
     display: flex;
     align-items: center;
-    gap: var(--spacing-spacing-100);
+    gap: 8px;
     background: none;
     border: none;
-    color: var(--text-primary-default);
-    font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-regular);
-    font-family: var(--Font-Secondary);
+    color: var(--surface-primary-default);
+    font-size: var(--size-font-copy-body-sm-text-size);
+    font-weight: 400;
+    font-family: 'Mulish', var(--Font-Secondary);
     cursor: pointer;
-    padding: var(--spacing-spacing-200);
+    padding: 8px 14px;
+    border-radius: 999px;
     transition: color 200ms ease;
+    line-height: 1;
 }
 
 .questionnaire-back-button:hover {
-    color: var(--text-primary-default-hover);
+    color: var(--surface-primary-default-hover);
 }
 
 .questionnaire-back-button svg {
@@ -94,17 +95,16 @@
 .questionnaire-content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-400);
+    gap: 24px;
     width: 100%;
-    flex: 1;
 }
 
 /* Header Section */
 .questionnaire-header {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-200);
-    margin-bottom: var(--spacing-spacing-200);
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .questionnaire-title {
@@ -118,9 +118,9 @@
 
 .questionnaire-description {
     font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
+    font-weight: 400;
     color: var(--text-default-body);
-    line-height: var(--size-font-copy-body-sm-line-height);
+    line-height: var(--number-scale-500);
     margin: 0;
     font-family: var(--Font-Secondary);
 }
@@ -129,53 +129,61 @@
 .questions-container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-400);
+    gap: 0;
 }
 
 /* Question Item */
 .question-item {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-spacing-200);
+    gap: 12px;
+    padding: var(--spacing-spacing-200) var(--spacing-spacing-300);
+    background-color: var(--color-foundations-white);
 }
 
 .question-label-row {
     display: flex;
     align-items: center;
-    gap: var(--spacing-spacing-100);
+    gap: 8px;
+    position: relative;
 }
 
 .question-required {
-    color: var(--Error-500, #ef4444);
-    font-size: var(--size-font-copy-body-sm-text-size);
+    color: var(--icon-error-default);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: 400;
+    font-family: var(--Font-Secondary);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
 }
 
 .question-text {
-    font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: 400;
     color: var(--text-default-body);
     font-family: var(--Font-Secondary);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
     margin: 0;
 }
 
 .question-help-icon {
-    width: 16px;
-    height: 16px;
-    color: var(--Primary-600);
+    width: 20px;
+    height: 20px;
+    color: var(--surface-primary-default);
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 /* Radio Options */
 .radio-options {
     display: flex;
-    gap: var(--spacing-spacing-500);
+    gap: 24px;
     align-items: center;
 }
 
 .radio-option {
     display: flex;
     align-items: center;
-    gap: var(--spacing-spacing-200);
+    gap: 8px;
     cursor: pointer;
 }
 
@@ -183,18 +191,19 @@
     position: relative;
     width: 24px;
     height: 24px;
-    border: var(--Border-Width-xs) solid var(--border-default);
-    border-radius: 50%;
-    background-color: var(--color-foundations-white);
+    border: var(--Border-Width-xs) solid var(--border-primary-default);
+    border-radius: var(--Border-Radius-round);
+    background-color: transparent;
     cursor: pointer;
     transition: border-color 200ms ease, background-color 200ms ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .radio-input.selected {
-    border-color: var(--surface-primary-default);
+    border-color: var(--border-primary-default);
     background-color: var(--surface-primary-default);
 }
 
@@ -203,52 +212,58 @@
     width: 8px;
     height: 8px;
     background-color: var(--color-foundations-white);
-    border-radius: 50%;
+    border-radius: var(--Border-Radius-round);
 }
 
 .radio-label {
-    font-size: var(--size-font-copy-body-sm-text-size);
-    font-weight: var(--font-weight-regular);
+    font-size: var(--Font-Copy-body-text-size);
+    font-weight: 400;
     color: var(--text-default-body);
     font-family: var(--Font-Secondary);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
 }
 
 /* Submit Button */
 .questionnaire-actions {
     width: 100%;
-    margin-top: auto;
-    padding-top: var(--spacing-spacing-400);
+    padding-top: 32px;
 }
 
 .questionnaire-submit-button {
     width: 100%;
-    padding: var(--spacing-spacing-400);
+    height: 48px;
+    padding: 12px 20px;
     background-color: var(--surface-primary-default);
     color: var(--color-foundations-white);
-    border: none;
-    border-radius: var(--Border-Radius-200);
+    border: 1px solid var(--surface-primary-default);
+    border-radius: 999px;
     font-size: var(--Font-Copy-body-text-size);
-    font-weight: var(--font-weight-semibold);
+    font-weight: 400;
     font-family: var(--Font-Secondary);
     cursor: pointer;
     transition: background-color 200ms ease, opacity 200ms ease;
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+    line-height: var(--spacing-font-copy-body-lg-paragraph-spacing);
 }
 
 .questionnaire-submit-button:hover:not(:disabled) {
     background-color: var(--surface-primary-default-hover);
+    border-color: var(--surface-primary-default-hover);
 }
 
 .questionnaire-submit-button:disabled {
-    background-color: var(--Gray-200, #e5e7eb);
-    color: var(--Gray-400, #9ca3af);
+    background-color: #d1d5db;
+    border-color: #d1d5db;
+    color: #374151;
     cursor: not-allowed;
+    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
 }
 
 /* Mobile Responsive */
 @media (max-width: 375px) {
     .questionnaire-container {
-        gap: var(--spacing-spacing-300);
-        padding-top: var(--spacing-spacing-300);
+        gap: 12px;
+        padding-top: 12px;
     }
 
     .questionnaire-title {
@@ -257,11 +272,19 @@
     }
 
     .radio-options {
-        gap: var(--spacing-spacing-400);
+        gap: 16px;
     }
 
     .radio-input {
         width: 20px;
         height: 20px;
+    }
+}
+
+/* Desktop & Tablet Responsive */
+@media (min-width: 768px) {
+    .questionnaire-container {
+        max-width: 440px;
+        margin: 0 auto;
     }
 }

@@ -44,7 +44,7 @@ function App() {
               setCurrentPage('demographics')
             } else {
               // Existing Google user → connect device
-              setCurrentPage('device-connection')
+              setCurrentPage('connect-device')
             }
           }
         }
@@ -87,7 +87,7 @@ function App() {
   }
 
   const handleLoginContinue = () => {
-    setCurrentPage('device-connection')
+    setCurrentPage('connect-device')
   }
 
   const handleSwitchToSignUp = () => {
@@ -111,7 +111,7 @@ function App() {
   }
 
   const handleDemographicsContinue = () => {
-    setCurrentPage('device-connection')
+    setCurrentPage('connect-device')
   }
 
   const handleDeviceConnect = (device) => {
@@ -129,7 +129,7 @@ function App() {
   }
 
   const handleConnectDeviceBack = () => {
-    setCurrentPage('device-connection')
+    setCurrentPage('landing')
   }
 
   const handleConnectDeviceSkip = () => {
@@ -138,8 +138,8 @@ function App() {
     // You can add navigation to dashboard/home here
   }
 
-  const handleConnectDeviceContinue = () => {
-    // Navigate to connecting device screen
+  const handleConnectDeviceScan = () => {
+    // Navigate to connecting device screen (scanning flow)
     setCurrentPage('connecting-device')
   }
 
@@ -149,7 +149,7 @@ function App() {
   }
 
   const handleConnectingDeviceBack = () => {
-    setCurrentPage('device-connection')
+    setCurrentPage('connect-device')
   }
 
   const handleConnectedDeviceContinue = () => {
@@ -158,12 +158,12 @@ function App() {
   }
 
   const handleConnectedDeviceBack = () => {
-    setCurrentPage('device-connection')
+    setCurrentPage('connect-device')
   }
 
   const handleMeasuringVitalsBack = () => {
     // Go back to device connection screen
-    setCurrentPage('device-connection')
+    setCurrentPage('connect-device')
   }
 
   const handleMeasurementComplete = () => {
@@ -318,53 +318,75 @@ function App() {
     return (
       <ConnectDevice
         onBack={handleConnectDeviceBack}
-        onSkip={handleConnectDeviceSkip}
-        onContinue={handleConnectDeviceContinue}
+        onScan={handleConnectDeviceScan}
       />
     )
   }
 
   return (
     <div className="app">
+      {/* Bottom gradient wave background */}
+      <div className="welcome-gradient">
+        <svg viewBox="0 0 393 224" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 80C0 80 80 0 196.5 40C313 80 393 20 393 20V224H0V80Z" fill="url(#welcome-gradient-fill)" fillOpacity="0.08" />
+          <defs>
+            <linearGradient id="welcome-gradient-fill" x1="0" y1="0" x2="393" y2="224" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#1c7782" />
+              <stop offset="1" stopColor="#238b97" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
       <div className="container">
-        {/* Logo Section */}
-        <div className="logo-section">
-          <div className="logo">
-            <img src={checkedLogo} alt="Checked Logo" className="logo-image" />
-          </div>
+        {/* Logo */}
+        <div className="logo-container">
+          <img src={checkedLogo} alt="Checked Logo" className="logo-image" />
+        </div>
+
+        {/* Header Section */}
+        <div className="header-section">
           <h1 className="app-name">Checked</h1>
-          <p className="tagline">Self-Health Assessment Tool</p>
-          <p className="description">This self health tool helps you monitor your health easily.</p>
+          <h2 className="app-subtitle">Self-Health Assessment Tool</h2>
+          <p className="description">The self health tool that helps you monitor your health easily within minutes.</p>
         </div>
+      </div>
 
-        {/* Pagination Indicators */}
-        <div className="pagination">
-          <div className="pagination-dot active"></div>
-          <div className="pagination-dot"></div>
-          <div className="pagination-dot"></div>
-        </div>
+      {/* Action Buttons */}
+      <div className="actions">
+        <button className="btn btn-primary" onClick={handleContinueWithEmail}>
+          Create an account
+        </button>
+        <button className="btn btn-outline" onClick={handleGoogleSignIn}>
+          <svg className="google-icon" width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.64 9.20454C17.64 8.56636 17.5827 7.95272 17.4764 7.36363H9V10.845H13.8436C13.635 11.97 13.0009 12.9232 12.0477 13.5614V15.8195H14.9564C16.6582 14.2527 17.64 11.9455 17.64 9.20454Z" fill="#4285F4" />
+            <path d="M9 18C11.43 18 13.467 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4204 9 14.4204C6.65454 14.4204 4.67182 12.8373 3.96409 10.71H0.957275V13.0418C2.43818 15.9832 5.48182 18 9 18Z" fill="#34A853" />
+            <path d="M3.96409 10.71C3.78409 10.17 3.68182 9.59318 3.68182 9C3.68182 8.40682 3.78409 7.83 3.96409 7.29V4.95818H0.957273C0.347727 6.17318 0 7.54773 0 9C0 10.4523 0.347727 11.8268 0.957273 13.0418L3.96409 10.71Z" fill="#FBBC05" />
+            <path d="M9 3.57955C10.3214 3.57955 11.5077 4.03364 12.4405 4.92545L15.0218 2.34409C13.4632 0.891818 11.4259 0 9 0C5.48182 0 2.43818 2.01682 0.957275 4.95818L3.96409 7.29C4.67182 5.16273 6.65454 3.57955 9 3.57955Z" fill="#EA4335" />
+          </svg>
+          Sign in with Google
+        </button>
+        <button className="btn btn-outline" onClick={handleLogin}>
+          <svg className="mail-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.33325 3.33334H16.6666C17.5833 3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6666 16.6667H3.33325C2.41659 16.6667 1.66659 15.9167 1.66659 15V5.00001C1.66659 4.08334 2.41659 3.33334 3.33325 3.33334Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M18.3333 5L9.99992 10.8333L1.66659 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Continue with Email
+        </button>
+      </div>
 
-        {/* Action Buttons */}
-        <div className="actions">
-          <button className="btn btn-primary" onClick={handleContinueWithEmail}>
-            Continue with Email
-          </button>
-          <button className="btn btn-secondary" onClick={handleGoogleSignIn}>
-            <svg className="google-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.64 9.20454C17.64 8.56636 17.5827 7.95272 17.4764 7.36363H9V10.845H13.8436C13.635 11.97 13.0009 12.9232 12.0477 13.5614V15.8195H14.9564C16.6582 14.2527 17.64 11.9455 17.64 9.20454Z" fill="#4285F4" />
-              <path d="M9 18C11.43 18 13.467 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4204 9 14.4204C6.65454 14.4204 4.67182 12.8373 3.96409 10.71H0.957275V13.0418C2.43818 15.9832 5.48182 18 9 18Z" fill="#34A853" />
-              <path d="M3.96409 10.71C3.78409 10.17 3.68182 9.59318 3.68182 9C3.68182 8.40682 3.78409 7.83 3.96409 7.29V4.95818H0.957273C0.347727 6.17318 0 7.54773 0 9C0 10.4523 0.347727 11.8268 0.957273 13.0418L3.96409 10.71Z" fill="#FBBC05" />
-              <path d="M9 3.57955C10.3214 3.57955 11.5077 4.03364 12.4405 4.92545L15.0218 2.34409C13.4632 0.891818 11.4259 0 9 0C5.48182 0 2.43818 2.01682 0.957275 4.95818L3.96409 7.29C4.67182 5.16273 6.65454 3.57955 9 3.57955Z" fill="#EA4335" />
-            </svg>
-            Sign in with Google
-          </button>
-        </div>
-
-        {/* Login Link */}
+      {/* Footer */}
+      <div className="footer-section">
         <div className="login-link">
           <span>Have an account? </span>
           <a href="#" className="link" onClick={(e) => { e.preventDefault(); handleLogin(); }}>Log in</a>
         </div>
+        <p className="legal-text">
+          By continuing, you agree to our{' '}
+          <a href="#" className="legal-link">Terms of Service </a>
+          and{' '}
+          <a href="#" className="legal-link">Privacy Policy</a>
+        </p>
       </div>
     </div>
   )
