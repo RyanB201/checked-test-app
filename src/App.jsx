@@ -14,11 +14,15 @@ import Login from './Login'
 import DemographicsForm from './DemographicsForm'
 import DeviceConnection from './DeviceConnection'
 import ResetPassword from './ResetPassword'
+import HomeDashboard from './HomeDashboard'
+import ProfilePage from './ProfilePage'
 import { supabase } from './supabaseClient'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('loading')
   const [questionnaireAnswers, setQuestionnaireAnswers] = useState(null)
+  const [savedResults, setSavedResults] = useState([])
+  const [sessionData, setSessionData] = useState({ systolic: 118, diastolic: 76 })
 
   // Listen for auth state changes (handles Google OAuth redirect)
   useEffect(() => {
@@ -199,14 +203,44 @@ function App() {
   }
 
   const handleSaveResults = () => {
-    // Save results functionality
-    console.log('Saving results...')
-    alert('Your results have been saved!')
+    // Derive a simple 0–100 score from current session vitals + questionnaire
+    const { systolic, diastolic } = sessionData
+    const bpScore = (systolic >= 90 && systolic <= 120 && diastolic >= 60 && diastolic <= 80) ? 100
+      : (systolic > 140 || diastolic > 90) ? 50
+        : (systolic < 90 || diastolic < 60) ? 55
+          : 75
+
+    const symptomPenalty = questionnaireAnswers
+      ? [questionnaireAnswers.dizzy, questionnaireAnswers.headaches, questionnaireAnswers.nausea, questionnaireAnswers.visionChanges]
+        .filter(Boolean).length * 5
+      : 0
+
+    const score = Math.max(0, Math.min(100, bpScore - symptomPenalty))
+
+    const newResult = {
+      score,
+      date: new Date().toISOString(),
+      systolic,
+      diastolic,
+      questionnaireAnswers,
+    }
+
+    setSavedResults(prev => [newResult, ...prev])
+    setCurrentPage('home-dashboard')
   }
 
   const handleEndSession = () => {
     // End session and return to landing
     setCurrentPage('landing')
+  }
+
+  const handleNavigate = (tab) => {
+    if (tab === 'profile') setCurrentPage('profile')
+  }
+
+  const handleStartCheck = () => {
+    // Re-start assessment flow from the dashboard
+    setCurrentPage('connect-device')
   }
 
   if (currentPage === 'loading') {
@@ -297,9 +331,30 @@ function App() {
         onBack={handleFinalResultsBack}
         onSaveResults={handleSaveResults}
         onEndSession={handleEndSession}
-        systolic={118}
-        diastolic={76}
+        systolic={sessionData.systolic}
+        diastolic={sessionData.diastolic}
         questionnaireAnswers={questionnaireAnswers}
+      />
+    )
+  }
+
+  if (currentPage === 'home-dashboard') {
+    return (
+      <HomeDashboard
+        savedResults={savedResults}
+        onStartCheck={handleStartCheck}
+        onNavigate={handleNavigate}
+      />
+    )
+  }
+
+  if (currentPage === 'profile') {
+    return (
+      <ProfilePage
+        onBack={() => setCurrentPage('home-dashboard')}
+        onNavigate={(tab) => {
+          if (tab === 'home') setCurrentPage('home-dashboard')
+        }}
       />
     )
   }

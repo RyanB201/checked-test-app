@@ -267,16 +267,29 @@
 }
 
 .gender-card-icon {
-    font-size: 24px;
-    line-height: 24px;
-    color: var(--Primary-600);
-    font-family: 'Material Symbols Outlined';
-    font-weight: 100;
-    font-style: normal;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
-    text-align: center;
+}
+
+.gender-card-icon img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Other card — two icons side by side */
+.gender-card-icon-other {
+    width: auto;
+    flex-direction: row;
+    gap: 2px;
+}
+
+/* Teal colorize on selected cards */
+.gender-card.selected .gender-card-icon img {
+    filter: invert(35%) sepia(60%) saturate(500%) hue-rotate(145deg) brightness(85%);
 }
 
 .gender-card-label {

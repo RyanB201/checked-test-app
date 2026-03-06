@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './DemographicsForm.css'
+import maleIcon from '../svg-icons/Male Icon.svg'
+import femaleIcon from '../svg-icons/female.svg'
 
 function DemographicsForm({ onBack, onContinue }) {
     const [formData, setFormData] = useState({
@@ -169,7 +171,9 @@ function DemographicsForm({ onBack, onContinue }) {
                                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleGenderSelect('male') }}
                                 aria-label="Select Male"
                             >
-                                <span className="gender-card-icon">&#xe58e;</span>
+                                <span className="gender-card-icon">
+                                    <img src={maleIcon} alt="Male" width="24" height="24" />
+                                </span>
                                 <span className="gender-card-label">Male</span>
                             </div>
                             <div
@@ -180,7 +184,9 @@ function DemographicsForm({ onBack, onContinue }) {
                                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleGenderSelect('female') }}
                                 aria-label="Select Female"
                             >
-                                <span className="gender-card-icon">&#xe590;</span>
+                                <span className="gender-card-icon">
+                                    <img src={femaleIcon} alt="Female" width="24" height="24" />
+                                </span>
                                 <span className="gender-card-label">Female</span>
                             </div>
                             <div
@@ -191,7 +197,10 @@ function DemographicsForm({ onBack, onContinue }) {
                                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleGenderSelect('other') }}
                                 aria-label="Select Other"
                             >
-                                <span className="gender-card-icon">&#xe58d;</span>
+                                <span className="gender-card-icon gender-card-icon-other">
+                                    <img src={maleIcon} alt="" width="24" height="24" />
+                                    <img src={femaleIcon} alt="" width="24" height="24" />
+                                </span>
                                 <span className="gender-card-label">Other</span>
                             </div>
                         </div>

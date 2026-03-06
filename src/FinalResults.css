@@ -384,14 +384,14 @@
 
 /* Normal tier icon */
 .guidance-icon-normal {
-    background-color: var(--Primary-100);
+    background-color: var(--Primary-50);
     color: var(--Primary-600);
 }
 
 /* Urgent tier icon */
 .guidance-icon-urgent {
-    background-color: var(--Warning-100);
-    color: var(--Warning-600);
+    background-color: var(--Primary-50);
+    color: var(--Primary-600);
 }
 
 /* Emergency tier icon */
@@ -483,8 +483,8 @@
 }
 
 .symptoms-icon-urgent {
-    background-color: var(--Warning-100);
-    color: var(--Warning-600);
+    background-color: var(--Primary-50);
+    color: var(--Primary-600);
 }
 
 .symptoms-icon-emergency {
@@ -523,7 +523,7 @@
 }
 
 .symptom-dot-urgent {
-    background-color: var(--Warning-600);
+    background-color: var(--Primary-600);
 }
 
 .symptom-dot-emergency {
@@ -541,15 +541,15 @@
    GUIDANCE CARD — TIER VARIANTS
    ======================================= */
 .guidance-card-normal {
-    border-color: #e5e7eb;
+    border-color: var(--border-default);
 }
 
 .guidance-card-urgent {
-    border-color: var(--Warning-200);
+    border-color: var(--border-default);
 }
 
 .guidance-card-emergency {
-    border-color: var(--Error-200);
+    border-color: var(--border-default);
 }
 
 /* =======================================
