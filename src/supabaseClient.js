@@ -1,7 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+// Clean up the environment variables just in case they were pasted with extra spaces or quotes
+let supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim().replace(/['"]/g, '')
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim().replace(/['"]/g, '')
+
+// Ensure the URL starts with https:// if they accidentally omitted it
+if (supabaseUrl && !supabaseUrl.startsWith('http')) {
+  supabaseUrl = `https://${supabaseUrl}`
+}
 
 if (!supabaseUrl || !supabaseAnonKey) {
     console.error(
