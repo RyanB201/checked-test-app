@@ -23,11 +23,50 @@ function App() {
   const [questionnaireAnswers, setQuestionnaireAnswers] = useState(null)
   const [savedResults, setSavedResults] = useState([])
   const [sessionData, setSessionData] = useState({ systolic: 118, diastolic: 76 })
+  const [user, setUser] = useState(null)
+  const [demographics, setDemographics] = useState({
+    age: '',
+    weight: '',
+    weightUnit: 'kg',
+    gender: ''
+  })
 
   // Listen for auth state changes (handles Google OAuth redirect)
   useEffect(() => {
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user || null)
+      if (session?.user?.user_metadata?.age) {
+        setDemographics({
+          age: session.user.user_metadata.age,
+          weight: session.user.user_metadata.weight || '',
+          weightUnit: session.user.user_metadata.weightUnit || 'kg',
+          gender: session.user.user_metadata.gender || ''
+        })
+      }
+    })
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        setUser(session?.user || null)
+        if (session?.user?.user_metadata?.age) {
+          setDemographics({
+            age: session.user.user_metadata.age,
+            weight: session.user.user_metadata.weight || '',
+            weightUnit: session.user.user_metadata.weightUnit || 'kg',
+            gender: session.user.user_metadata.gender || ''
+          })
+        }
+
+        if (event === 'SIGNED_OUT') {
+          // Clear all user related state explicitly on sign out
+          setUser(null)
+          setDemographics({ age: '', weight: '', weightUnit: 'kg', gender: '' })
+          setSavedResults([])
+          setSessionData({ systolic: 118, diastolic: 76 })
+          setQuestionnaireAnswers(null)
+        }
+
         if (event === 'PASSWORD_RECOVERY') {
           // User clicked password reset link — show reset screen
           setCurrentPage('reset-password')
@@ -47,8 +86,8 @@ function App() {
               // New Google user → demographics
               setCurrentPage('demographics')
             } else {
-              // Existing Google user → connect device
-              setCurrentPage('connect-device')
+              // Existing Google user → home dashboard
+              setCurrentPage('home-dashboard')
             }
           }
         }
@@ -91,7 +130,7 @@ function App() {
   }
 
   const handleLoginContinue = () => {
-    setCurrentPage('connect-device')
+    setCurrentPage('home-dashboard')
   }
 
   const handleSwitchToSignUp = () => {
@@ -114,7 +153,19 @@ function App() {
     setCurrentPage('signup')
   }
 
-  const handleDemographicsContinue = () => {
+  const handleDemographicsContinue = (formData) => {
+    if (formData) {
+      setDemographics(formData)
+      // Save it to Supabase so it persists
+      supabase.auth.updateUser({
+        data: {
+          age: formData.age,
+          weight: formData.weight,
+          weightUnit: formData.weightUnit,
+          gender: formData.gender
+        }
+      })
+    }
     setCurrentPage('connect-device')
   }
 
@@ -238,9 +289,62 @@ function App() {
     if (tab === 'profile') setCurrentPage('profile')
   }
 
+  const handleProfileSave = async (updatedData) => {
+    try {
+      // Split full name if provided
+      let first_name = ''
+      let last_name = ''
+
+      if (updatedData.fullName) {
+        const nameParts = updatedData.fullName.split(' ')
+        first_name = nameParts[0]
+        last_name = nameParts.slice(1).join(' ')
+      }
+
+      // Update centralized demographics state
+      setDemographics(prev => ({
+        ...prev,
+        age: updatedData.age,
+        weight: updatedData.weight,
+        gender: updatedData.gender
+      }))
+
+      // Persist changes to Supabase via updateUser
+      await supabase.auth.updateUser({
+        data: {
+          first_name: first_name || user?.user_metadata?.first_name,
+          last_name: last_name || user?.user_metadata?.last_name,
+          full_name: updatedData.fullName || user?.user_metadata?.full_name,
+          age: updatedData.age,
+          weight: updatedData.weight,
+          gender: updatedData.gender
+        }
+      })
+
+      // We rely on the auth listener to update the `user` state locally, 
+      // but we could also manually merge it here if needed.
+    } catch (error) {
+      console.error('Failed to update profile:', error)
+    }
+  }
+
   const handleStartCheck = () => {
     // Re-start assessment flow from the dashboard
     setCurrentPage('connect-device')
+  }
+
+  const handleLogout = async () => {
+    // Attempt signing out (also triggers SIGNED_OUT event callback explicitly)
+    await supabase.auth.signOut()
+
+    // Explicitly reset on frontend here just in case event misses it immediately
+    setUser(null)
+    setDemographics({ age: '', weight: '', weightUnit: 'kg', gender: '' })
+    setSavedResults([])
+    setSessionData({ systolic: 118, diastolic: 76 })
+    setQuestionnaireAnswers(null)
+
+    setCurrentPage('landing')
   }
 
   if (currentPage === 'loading') {
@@ -351,10 +455,14 @@ function App() {
   if (currentPage === 'profile') {
     return (
       <ProfilePage
+        user={user}
+        demographics={demographics}
         onBack={() => setCurrentPage('home-dashboard')}
         onNavigate={(tab) => {
           if (tab === 'home') setCurrentPage('home-dashboard')
         }}
+        onSaveProfile={handleProfileSave}
+        onLogout={handleLogout}
       />
     )
   }

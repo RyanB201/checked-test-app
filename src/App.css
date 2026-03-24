@@ -28,7 +28,7 @@
   flex-direction: column;
   flex: 1;
   padding: var(--spacing-spacing-md) var(--spacing-spacing-600);
-  padding-bottom: 0;
+  padding-bottom: var(--spacing-spacing-xl);
   position: relative;
   z-index: 2;
 }

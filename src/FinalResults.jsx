@@ -182,7 +182,7 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                         </div>
                         <div className="metrics-range-bar">
                             <div className="metrics-range-track">
-                                <div className="metrics-range-highlight" style={{ left: '24.8%', width: '25.4%' }}></div>
+                                <div className="metrics-range-highlight" style={{ left: '31.25%', width: '18.75%' }}></div>
                             </div>
                             <div
                                 className="metrics-range-marker"
@@ -204,7 +204,7 @@ function FinalResults({ onBack, onSaveResults, onEndSession, systolic = 118, dia
                         </div>
                         <div className="metrics-range-bar">
                             <div className="metrics-range-track">
-                                <div className="metrics-range-highlight" style={{ left: '24.8%', width: '17.8%' }}></div>
+                                <div className="metrics-range-highlight" style={{ left: '30%', width: '20%' }}></div>
                             </div>
                             <div
                                 className="metrics-range-marker"

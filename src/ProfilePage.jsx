@@ -1,10 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ProfilePage.css'
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import {
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-function ProfilePage({ onBack, onNavigate }) {
+function ProfilePage({ user, demographics, onBack, onNavigate, onSaveProfile, onLogout }) {
+    const [isEditOpen, setIsEditOpen] = useState(false)
+    const [isAlertOpen, setIsAlertOpen] = useState(false)
+
+    // form state
+    const [editForm, setEditForm] = useState({
+        fullName: '',
+        weight: '',
+        age: '',
+        gender: ''
+    })
 
     const handleNavClick = (tab) => {
         if (onNavigate) onNavigate(tab)
+    }
+
+    const fullName = user?.user_metadata?.first_name
+        ? `${user.user_metadata.first_name} ${user.user_metadata.last_name || ''}`.trim()
+        : user?.user_metadata?.full_name || '-'
+
+    const weight = demographics?.weight || '-'
+    const weightUnit = demographics?.weightUnit || 'kg'
+    const age = demographics?.age || '-'
+    const gender = demographics?.gender || '-'
+
+    const handleOpenEdit = () => {
+        setEditForm({
+            fullName: fullName === '-' ? '' : fullName,
+            weight: weight === '-' ? '' : weight,
+            age: age === '-' ? '' : age,
+            gender: gender === '-' ? '' : gender
+        })
+        setIsEditOpen(true)
+    }
+
+    const handleSaveEditClick = () => {
+        setIsEditOpen(false)
+        setIsAlertOpen(true)
+    }
+
+    const handleConfirmSave = () => {
+        if (onSaveProfile) {
+            onSaveProfile(editForm)
+        }
+        setIsAlertOpen(false)
+    }
+
+    const handleCancelAlert = () => {
+        setIsAlertOpen(false)
+        setIsEditOpen(true)
     }
 
     return (
@@ -52,12 +113,12 @@ function ProfilePage({ onBack, onNavigate }) {
                     </div>
 
                     <div className="profile-identity">
-                        <p className="profile-name">Alex Johnson</p>
-                        <p className="profile-subtitle">Health Enthusiast · Pro Member</p>
+                        <p className="profile-name">{fullName}</p>
+                        <p className="profile-subtitle">{user?.email || 'Health Enthusiast'} · Pro Member</p>
                     </div>
 
                     <div className="profile-actions">
-                        <button className="profile-btn-primary">Edit Profile</button>
+                        <button className="profile-btn-primary" onClick={handleOpenEdit}>Edit Profile</button>
                         <button className="profile-btn-icon" aria-label="Share profile">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <circle cx="18" cy="5" r="3" stroke="currentColor" strokeWidth="1.8" />
@@ -72,16 +133,16 @@ function ProfilePage({ onBack, onNavigate }) {
                 {/* ── Health Stats ── */}
                 <section className="profile-stats">
                     <div className="profile-stat-card">
-                        <p className="profile-stat-value">72.4</p>
-                        <p className="profile-stat-label">Weight (kg)</p>
+                        <p className="profile-stat-value">{weight}</p>
+                        <p className="profile-stat-label">Weight ({weightUnit})</p>
                     </div>
                     <div className="profile-stat-card">
-                        <p className="profile-stat-value">182</p>
-                        <p className="profile-stat-label">Height (cm)</p>
+                        <p className="profile-stat-value">{age}</p>
+                        <p className="profile-stat-label">Age</p>
                     </div>
-                    <div className="profile-stat-card">
-                        <p className="profile-stat-value">21.8</p>
-                        <p className="profile-stat-label">BMI Index</p>
+                    <div className="profile-stat-card" style={{ textTransform: 'capitalize' }}>
+                        <p className="profile-stat-value">{gender}</p>
+                        <p className="profile-stat-label">Gender</p>
                     </div>
                 </section>
 
@@ -136,7 +197,7 @@ function ProfilePage({ onBack, onNavigate }) {
                         </button>
 
                         {/* Log Out */}
-                        <button className="profile-menu__item profile-menu__item--danger">
+                        <button className="profile-menu__item profile-menu__item--danger" onClick={onLogout}>
                             <div className="profile-menu__icon-wrap profile-menu__icon-wrap--danger">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -151,49 +212,132 @@ function ProfilePage({ onBack, onNavigate }) {
             </main>
 
             {/* ── Bottom Nav ── */}
-            <nav className="profile-nav">
+            <nav className="fixed bottom-0 left-0 right-0 mx-auto max-w-[430px] border-t border-slate-100 dark:border-slate-800 bg-white/95 dark:bg-background-dark/95 backdrop-blur-xl pb-8 pt-4 flex justify-around items-center z-20">
                 <button
-                    className="profile-nav__item"
                     onClick={() => handleNavClick('home')}
+                    className="flex flex-col items-center gap-1.5 cursor-pointer bg-transparent border-none text-slate-400 hover:text-slate-600"
                 >
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M9 22V12h6v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>Home</span>
+                    <span className="material-symbols-outlined">home</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest">Home</span>
                 </button>
                 <button
-                    className="profile-nav__item"
-                    onClick={() => handleNavClick('trends')}
-                >
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>Insights</span>
-                </button>
-                <button
-                    className="profile-nav__item"
-                    onClick={() => handleNavClick('plan')}
-                >
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                        <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                        <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                    <span>Plan</span>
-                </button>
-                <button
-                    className="profile-nav__item profile-nav__item--active"
                     onClick={() => handleNavClick('profile')}
+                    className="flex flex-col items-center gap-1.5 cursor-pointer bg-transparent border-none"
+                    style={{ color: 'var(--Primary-600)' }}
                 >
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M4 20C4 17 7.58 14 12 14C16.42 14 20 17 20 20" strokeLinecap="round" />
-                    </svg>
-                    <span>Profile</span>
+                    <span className="material-symbols-outlined">person</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest">Profile</span>
                 </button>
             </nav>
+
+            {/* ── Dialogs ── */}
+            <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
+                <DialogContent className="w-[90vw] max-w-[400px] rounded-3xl p-6 border-slate-100 bg-white">
+                    <DialogHeader className="mb-4">
+                        <DialogTitle className="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4">Edit Profile</DialogTitle>
+                    </DialogHeader>
+
+                    <div className="flex flex-col gap-5 text-left">
+                        <div className="flex flex-col gap-2">
+                            <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Full Name</Label>
+                            <Input
+                                className="h-12 rounded-xl border-slate-200 text-base px-4"
+                                value={editForm.fullName}
+                                onChange={(e) => setEditForm(prev => ({ ...prev, fullName: e.target.value }))}
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Email Address</Label>
+                            <Input
+                                disabled
+                                className="h-12 rounded-xl border-slate-200 bg-slate-50 text-slate-500 text-base px-4"
+                                value={user?.email || '-'}
+                            />
+                            <p className="text-[10px] text-slate-400 font-medium">Email cannot be changed directly.</p>
+                        </div>
+
+                        <div className="flex gap-4">
+                            <div className="flex flex-col gap-2 flex-1">
+                                <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Weight (kg)</Label>
+                                <Input
+                                    className="h-12 rounded-xl border-slate-200 text-base px-4"
+                                    value={editForm.weight}
+                                    onChange={(e) => setEditForm(prev => ({ ...prev, weight: e.target.value }))}
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2 flex-1">
+                                <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Age</Label>
+                                <Input
+                                    className="h-12 rounded-xl border-slate-200 text-base px-4"
+                                    type="number"
+                                    value={editForm.age}
+                                    onChange={(e) => setEditForm(prev => ({ ...prev, age: e.target.value }))}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <Label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Gender</Label>
+                            <div className="flex gap-2">
+                                {['Male', 'Female', 'Other'].map(option => (
+                                    <button
+                                        key={option}
+                                        type="button"
+                                        onClick={() => setEditForm(prev => ({ ...prev, gender: option.toLowerCase() }))}
+                                        className={`flex-1 h-12 rounded-xl text-sm font-semibold transition-colors border ${editForm.gender.toLowerCase() === option.toLowerCase()
+                                            ? 'bg-[var(--Primary-50)] border-[var(--Primary-600)] text-[var(--Primary-600)]'
+                                            : 'bg-white border-slate-200 text-slate-500'
+                                            }`}
+                                    >
+                                        {option}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8">
+                        <button
+                            className="w-full h-12 rounded-xl bg-[var(--Primary-600)] text-white font-semibold text-base hover:bg-[var(--Primary-700)] transition-colors"
+                            onClick={handleSaveEditClick}
+                        >
+                            Save Changes
+                        </button>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+                <AlertDialogContent className="w-[90vw] max-w-[400px] rounded-3xl p-6 bg-white border-slate-100 flex flex-col items-center text-center">
+                    <AlertDialogHeader className="flex flex-col items-center gap-4 text-center">
+                        <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[var(--Primary-50)] text-[var(--Primary-600)] mb-2 mt-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </div>
+                        <AlertDialogTitle className="text-xl font-bold text-slate-900 m-0">Save profile changes?</AlertDialogTitle>
+                        <AlertDialogDescription className="text-slate-500 text-[15px] leading-relaxed m-0 text-center font-medium px-2">
+                            Your updated name, weight, age, and gender will be saved to your profile immediately.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <div className="w-full flex flex-col gap-3 mt-8">
+                        <button
+                            className="w-full h-12 rounded-xl bg-[var(--Primary-600)] text-white font-semibold text-base hover:bg-[var(--Primary-700)] transition-colors"
+                            onClick={handleConfirmSave}
+                        >
+                            Yes, Save Changes
+                        </button>
+                        <button
+                            className="w-full h-12 rounded-xl bg-slate-50 text-slate-700 font-semibold text-base hover:bg-slate-100 transition-colors"
+                            onClick={handleCancelAlert}
+                        >
+                            Go Back
+                        </button>
+                    </div>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     )
 }
