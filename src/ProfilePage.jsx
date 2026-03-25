@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import { supabase } from './supabaseClient'
 import './ProfilePage.css'
 import {
     Dialog,
@@ -19,6 +20,55 @@ import { Label } from "@/components/ui/label"
 function ProfilePage({ user, demographics, onBack, onNavigate, onSaveProfile, onLogout }) {
     const [isEditOpen, setIsEditOpen] = useState(false)
     const [isAlertOpen, setIsAlertOpen] = useState(false)
+    const fileInputRef = useRef(null)
+    const [uploadingAvatar, setUploadingAvatar] = useState(false)
+    const [localAvatar, setLocalAvatar] = useState(user?.user_metadata?.avatar_url || null)
+
+    useEffect(() => {
+        if (user?.user_metadata?.avatar_url) {
+            setLocalAvatar(user.user_metadata.avatar_url)
+        }
+    }, [user])
+
+    const handleAvatarClick = () => {
+        if (!uploadingAvatar) {
+            fileInputRef.current?.click()
+        }
+    }
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files?.[0]
+        if (!file || !user) return
+
+        try {
+            setUploadingAvatar(true)
+            const fileExt = file.name.split('.').pop()
+            const fileName = `${user.id}-${Date.now()}.${fileExt}`
+
+            const { error: uploadError } = await supabase.storage
+                .from('avatars')
+                .upload(fileName, file, { upsert: true })
+
+            if (uploadError) throw uploadError
+
+            const { data } = supabase.storage
+                .from('avatars')
+                .getPublicUrl(fileName)
+                
+            const avatarUrl = data.publicUrl
+            
+            await supabase.auth.updateUser({
+                data: { avatar_url: avatarUrl }
+            })
+            
+            setLocalAvatar(avatarUrl)
+        } catch (error) {
+            console.error('Error uploading avatar:', error)
+            alert('Error uploading avatar: ' + error.message)
+        } finally {
+            setUploadingAvatar(false)
+        }
+    }
 
     // form state
     const [editForm, setEditForm] = useState({
@@ -96,20 +146,55 @@ function ProfilePage({ user, demographics, onBack, onNavigate, onSaveProfile, on
                 {/* ── Avatar + Name ── */}
                 <section className="profile-hero">
                     <div className="profile-avatar-wrap">
-                        <div className="profile-avatar">
-                            {/* Placeholder avatar illustration */}
-                            <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" width="96" height="96">
-                                <circle cx="48" cy="48" r="48" fill="var(--Primary-50)" />
-                                <circle cx="48" cy="38" r="16" fill="var(--Primary-200)" />
-                                <ellipse cx="48" cy="78" rx="26" ry="18" fill="var(--Primary-300)" />
-                            </svg>
+                        {/* File input — kept offscreen (not display:none) so .click() works in all browsers */}
+                        <input
+                            ref={fileInputRef}
+                            id="avatar-file-input"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            style={{
+                                position: 'absolute',
+                                width: '1px',
+                                height: '1px',
+                                opacity: 0,
+                                overflow: 'hidden',
+                                zIndex: -1,
+                                left: '-9999px',
+                                top: '-9999px',
+                            }}
+                        />
+                        <div className="profile-avatar" style={{ position: 'relative', overflow: 'hidden' }}>
+                            {localAvatar ? (
+                                <img src={localAvatar} alt="Profile Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                            ) : (
+                                <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" width="96" height="96">
+                                    <circle cx="48" cy="48" r="48" fill="var(--Primary-50)" />
+                                    <circle cx="48" cy="38" r="16" fill="var(--Primary-200)" />
+                                    <ellipse cx="48" cy="78" rx="26" ry="18" fill="var(--Primary-300)" />
+                                </svg>
+                            )}
+                            {uploadingAvatar && (
+                                <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ animation: 'spin 1s linear infinite' }}>
+                                        <circle cx="12" cy="12" r="10" stroke="var(--Primary-200)" strokeWidth="3" />
+                                        <path d="M12 2a10 10 0 0 1 10 10" stroke="var(--Primary-600)" strokeWidth="3" strokeLinecap="round" />
+                                    </svg>
+                                </div>
+                            )}
                         </div>
-                        <button className="profile-avatar-edit" aria-label="Edit profile photo">
+                        {/* Use <label htmlFor> as the primary trigger — works without JS and bypasses browser security restrictions */}
+                        <label
+                            htmlFor="avatar-file-input"
+                            className="profile-avatar-edit"
+                            aria-label="Edit profile photo"
+                            style={{ cursor: uploadingAvatar ? 'not-allowed' : 'pointer', pointerEvents: uploadingAvatar ? 'none' : 'auto' }}
+                        >
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                        </button>
+                        </label>
                     </div>
 
                     <div className="profile-identity">
