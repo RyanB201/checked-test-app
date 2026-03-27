@@ -259,3 +259,96 @@
   color: var(--text-primary-default);
   text-decoration: underline;
 }
+
+/* ==========================================
+   DESKTOP WELCOME SCREEN BREAKPOINT
+   ========================================== */
+
+/* Hidden on mobile by default (unused empty wrapper) */
+.welcome-right-panel {
+  display: contents; /* On mobile, children flow into .app directly */
+}
+
+@media (min-width: 768px) {
+
+  /* App container vertically centers the single content panel */
+  .app {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* The content panel takes up the centered space */
+  .welcome-right-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--size-frame-width);
+    padding: 0;
+    z-index: 2;
+  }
+
+  /* Hide the mobile logo on desktop */
+  .welcome-right-panel .container .logo-container {
+    display: none;
+  }
+
+  /* Header container: 415px wide, centered horizontally, left-aligned text */
+  .welcome-right-panel .container {
+    max-width: 415px;
+    width: 100%;
+    margin: 0 auto 64px auto;
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+    flex: 0 0 auto;
+  }
+
+  /* Header text group */
+  .welcome-right-panel .header-section {
+    gap: var(--spacing-spacing-400);
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  /* H1 uses Figma spec: 48px SemiBold Sora, line-height 68px */
+  .welcome-right-panel .app-name {
+    font-size: 48px;
+    line-height: 68px;
+  }
+
+  /* H3 subtitle: 32px SemiBold Sora */
+  .welcome-right-panel .app-subtitle {
+    font-size: 32px;
+  }
+
+  /* Body description: 16px Montserrat Regular */
+  .welcome-right-panel .description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Buttons container: 413px wide, centered horizontally */
+  .welcome-right-panel .actions {
+    max-width: 413px;
+    width: 100%;
+    margin: 0 auto 64px auto;
+    padding: 0;
+  }
+
+  /* Footer: 413px wide, centered explicitly */
+  .welcome-right-panel .footer-section {
+    max-width: 413px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    align-items: center;
+  }
+
+  /* Wave gradient stretches full-width, bottom of viewport */
+  .welcome-gradient {
+    height: 309px;
+  }
+}
