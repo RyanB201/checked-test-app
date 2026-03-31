@@ -54,7 +54,7 @@ export default {
         "background-dark": "#121e20",
       },
       fontFamily: {
-        display: ["Inter", "sans-serif"],
+        display: ["Sora", "sans-serif"],
         body: ["Montserrat", "sans-serif"],
       },
       borderRadius: {
