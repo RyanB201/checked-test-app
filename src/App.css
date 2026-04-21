@@ -322,6 +322,7 @@
   /* H3 subtitle: 32px SemiBold Sora */
   .welcome-right-panel .app-subtitle {
     font-size: 32px;
+    max-width: 300px;
   }
 
   /* Body description: 16px Montserrat Regular */
